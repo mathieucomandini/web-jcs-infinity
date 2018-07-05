@@ -49,9 +49,9 @@
                     </a>
                 </div>
             </li>-->
-            <li class="nav-item dropdown" ngbDropdown>
+            <li *ngIf="connexion" class="nav-item dropdown" ngbDropdown>
                 <a href="javascript:void(0)" class="nav-link" ngbDropdownToggle>
-                    <i class="fa fa-user"></i> John Smith <b class="caret"></b>
+                    <i class="fa fa-user"></i> Forandos <b class="caret"></b>
                 </a>
                 <div class="dropdown-menu-right" ngbDropdownMenu>
                     <a class="dropdown-item" href="javascript:void(0)">
@@ -61,6 +61,11 @@
                         <i class="fa fa-fw fa-power-off"></i> {{ 'Déconnexion' | translate }}
                     </a>
                 </div>
+            </li>
+            <li *ngIf="!connexion">
+                <a [routerLink]="['/login']" class="nav-link">
+                    <i class="fa fa-sign-in"></i> Connexion <b class="caret"></b>
+                </a>
             </li>
         </ul>
     </div>

@@ -11,6 +11,7 @@ export class HeaderComponent implements OnInit {
     pushRightClass: string = 'push-right';
 
     connexion = false;
+    login = ' ';
 
     constructor(private translate: TranslateService, public router: Router) {
 
@@ -31,7 +32,8 @@ export class HeaderComponent implements OnInit {
     }
 
     ngOnInit() {
-        if(localStorage.getItem('isLoggedin')){
+        if(localStorage.getItem('login')){
+            this.login = localStorage.getItem('login');
             this.connexion = true;
         }
     }
@@ -52,7 +54,7 @@ export class HeaderComponent implements OnInit {
     }
 
     onLoggedout() {
-        localStorage.removeItem('isLoggedin');
+        localStorage.removeItem('login');
     }
 
     changeLang(language: string) {

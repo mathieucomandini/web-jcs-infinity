@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { routerTransition } from '../router.animations';
+import { DataService } from '../_services/data.service';
+import { NgModel } from '@angular/forms';
 
 @Component({
     selector: 'app-signup',
@@ -8,7 +11,63 @@ import { routerTransition } from '../router.animations';
     animations: [routerTransition()]
 })
 export class SignupComponent implements OnInit {
-    constructor() {}
+
+    login = '';
+    mdp = '';
+    cmdp = '';
+
+    erreurSaisie = false;
+    memeLogin = false;
+
+    constructor(public router: Router, private dataService: DataService) {
+
+    }
 
     ngOnInit() {}
+
+    onSignup(){
+        //localStorage.setItem('isLoggedin', 'true');
+        const current = this;
+
+        if(this.login != '' && this.mdp != '' && this.cmdp != ''){
+            
+            if(this.mdp == this.cmdp){
+
+                this.dataService.checkLogin(this.login).then(data => {
+                    if(data.login){
+                        this.dataService.inscription(current.login, current.mdp).then(data => {
+                            if(data.success)
+                            {
+                                localStorage.setItem('login', current.login);
+                                localStorage.setItem('id', "nique");
+                                localStorage.setItem('admin', "0");
+                                location.replace('/dashboard');
+                            }
+                        });
+                    }
+                    else
+                    {
+                        current.memeLogin = true;
+                        setTimeout(() => current.memeLogin = false, 2000); 
+                    }
+                });
+            }
+            else
+            {
+                current.erreurSaisie = true;
+                setTimeout(() => current.erreurSaisie = false, 2000); 
+            }
+        }
+        else
+        {
+            current.erreurSaisie = true;
+            setTimeout(() => current.erreurSaisie = false, 2000); 
+        }
+    }
+
+    onKeyup(event) {
+        if (event.key === 'Enter') {
+            this.onSignup();
+        }
+    }
 }

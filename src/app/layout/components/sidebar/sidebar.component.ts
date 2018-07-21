@@ -13,6 +13,7 @@ export class SidebarComponent {
     pushRightClass: string = 'push-right';
 
     connexion = false;
+    login = ' ';
 
     constructor(private translate: TranslateService, public router: Router) {
         this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de']);
@@ -32,7 +33,8 @@ export class SidebarComponent {
     }
 
     ngOnInit() {
-        if(localStorage.getItem('isLoggedin')){
+        if(localStorage.getItem('login')){
+            this.login = localStorage.getItem('login');
             this.connexion = true;
         }
     }
@@ -69,6 +71,6 @@ export class SidebarComponent {
     }
 
     onLoggedout() {
-        localStorage.removeItem('isLoggedin');
+        localStorage.removeItem('login');
     }
 }

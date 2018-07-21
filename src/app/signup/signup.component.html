@@ -1,4 +1,4 @@
-<div class="login-page" [@routerTransition]>
+<div class="login-page" [@routerTransition] (window:keyup)="onKeyup($event)">
     <div class="row justify-content-md-center">
         <div class="col-md-4">
             <a [routerLink]="['/dashboard']"><img class="user-avatar" src="assets/images/JCSLOGOFINAL.png" width="150px" /></a>
@@ -6,21 +6,23 @@
             <form role="form">
                 <div class="form-content">
                     <div class="form-group">
-                        <input type="text" class="form-control input-underline input-lg" id="" placeholder="Pseudo">
+                        <input type="text" [(ngModel)]="login" maxlength="20" name="pseudo" class="form-control input-underline input-lg" id="1" placeholder="Pseudo" #pseudo="ngModel">
                     </div>
+                    <div *ngIf="memeLogin" class="alert-danger">Login déjà pris</div>
+
+                    <!--<div class="form-group">
+                        <input type="text" class="form-control input-underline input-lg" id="2" placeholder="Mail">
+                    </div>-->
 
                     <div class="form-group">
-                        <input type="text" class="form-control input-underline input-lg" id="" placeholder="Mail">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="Mot de passe">
+                        <input type="password" [(ngModel)]="mdp" maxlength="20" name="pass" class="form-control input-underline input-lg" id="3" placeholder="Mot de passe" #pass="ngModel">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="Confirmer le mot de passe">
+                        <input type="password" [(ngModel)]="cmdp" maxlength="20" name="confirm" class="form-control input-underline input-lg" id="4" placeholder="Confirmer le mot de passe" #confirm="ngModel">
                     </div>
+                    <div *ngIf="erreurSaisie" class="alert-danger">Veuillez renseigner tous les champs correctement.</div>
                 </div>
-                <a class="btn rounded-btn" [routerLink]="['/dashboard']"> S'inscrire </a>&nbsp;
+                <a class="btn rounded-btn" (click)="onSignup()"> S'inscrire </a>&nbsp;
                 <a class="btn rounded-btn" [routerLink]="['/login']"> Login </a>
             </form>
         </div>

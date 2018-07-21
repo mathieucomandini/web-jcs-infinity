@@ -22,13 +22,50 @@ export class DataService {
         this._apiURL = this._global.apiURL;
     }
 
-    connexion(mail: string, passe: string, mutuelle: string) {
-        const json = {'mail': mail, 'passe': passe, 'mutuelle': mutuelle};
+    connexion(login: string, passe: string) {
+        const json = {"login": login, "passe": passe};
         return this.authHttp.post(this._apiURL + 'user/connexion', json)
             .map(res => res.json())
             .map(data => {
                 return data;
             }).catch (this.handleError).toPromise();
+    }
+
+    inscription(login: string, passe: string) {
+        const json = {"login": login, "passe": passe};
+        return this.authHttp.post(this._apiURL + 'user/inscription', json)
+            .map(res => res.json())
+            .map(data => {
+                return data;
+            }).catch (this.handleError).toPromise();
+    }
+
+    modify(id: string, passe: string){
+        const json = {
+            "id" : id,
+            "passe" : passe
+        }
+        return this.authHttp.post(this._apiURL + 'user/modify', json);
+    }
+
+       //check si le login est deja dans la base
+    checkLogin(login: string){
+        const json = { "login" : login };
+        return this.authHttp.post(this._apiURL + 'user/dedans', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }    
+
+    //changer le login
+    changerLogin(login: string, id: string){
+        const json = { "login" : login, "id" : id };
+        return this.authHttp.post(this._apiURL + 'user/changerlogin', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
     }
 
     handleError(error) {

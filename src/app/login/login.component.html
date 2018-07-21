@@ -1,4 +1,4 @@
-<div class="login-page" [@routerTransition]>
+<div class="login-page" [@routerTransition] (window:keyup)="onKeyup($event)">
     <div class="row justify-content-md-center">
         <div class="col-md-4">
             <a [routerLink]="['/dashboard']"><img src="assets/images/JCSLOGOFINAL.png" width="150px" class="user-avatar" /></a>
@@ -6,14 +6,16 @@
             <form role="form">
                 <div class="form-content">
                     <div class="form-group">
-                        <input type="text" ng-model="name" class="form-control input-underline input-lg" id="" placeholder="Login">
+                        <input type="text" name="log" [(ngModel)]="login" maxlength="20" class="form-control input-underline input-lg" id="login" placeholder="Login" #log="ngModel">
                     </div>
 
                     <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="Mot de passe">
+                        <input type="password" name="passe" [(ngModel)]="mdp" maxlength="20" class="form-control input-underline input-lg" id="passe" placeholder="Mot de passe" #passe="ngModel">
                     </div>
+                    <div *ngIf="nonAutorise" class="alert-danger">Login ou mot de passe incorrect.</div>
+                    <div *ngIf="erreurSaisie" class="alert-danger">Veuillez renseigner tous les champs.</div>
                 </div>
-                <a class="btn rounded-btn" [routerLink]="['/dashboard']" (click)="onLoggedin()"> Login </a>
+                <a class="btn rounded-btn" (click)="onLoggedin()"> Login </a>
                 &nbsp;
                 <a class="btn rounded-btn" [routerLink]="['/signup']">S'inscrire</a>
             </form>

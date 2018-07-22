@@ -1,0 +1,91 @@
+<div [@routerTransition]>
+
+    <!--<app-pari [heading]="'Paris'" [icon]="'fa-money'"></app-pari>-->
+    
+    <div *ngIf="!connexion">
+        Vous devez vous connecter pour utiliser l'interface de pari ;)
+    </div>
+
+    <div *ngIf="connexion">
+        <div>
+
+            <h5>Bienvenue sur JCS Easy Bets, l'interface de pari des JCS !</h5>
+            <br>
+            <br>
+            <br>
+            <label>Crédit disponible : {{credit}} JC$</label>
+            <br>
+            <label>Crédit en jeu : {{creditEnJeu}} JC$</label>
+            <br>
+            <label>Gains potentiels : {{gainsPotTot}} JC$</label>
+            <br>
+            <br>
+
+            <div *ngIf="!pariChoisi">
+                <label>Liste des paris en cours : </label>
+                <div class="row">
+                    <div class="col-lg-12">
+                            <table class="table">
+                                    <thead class="thead-inverse">
+                                    <tr>
+                                        <th>Intitulé du Pari</th>
+                                        <th>Issue 1</th>
+                                        <th>Cote</th>
+                                        <th>Issue 2</th>
+                                        <th>Cote</th>
+                                        <th>Parier</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>Autoroot vs 150 IQ</td>
+                                        <td>Autoroot</td>
+                                        <td>1.85</td>
+                                        <td>150IQ</td>
+                                        <td>1.95</td>
+                                        <th><button type="button" (click)="onParier()" class="btn btn-secondary">Parier</button></th>
+                                    </tr>
+                                    </tbody>
+                           </table>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="pariChoisi">
+            <div class="row">
+                <div class="col-lg-6">
+                         
+                     
+                        <label>Qui sera le gagnant entre Autoroot et 150IQ ?</label>
+                        <select [(ngModel)]="choixOption" (ngModelChange)="selectionChange($event)" class="form-control">
+                                <option value="1.85">Autoroot - Cote : 1.85</option>
+                                <option value="1.95">150IQ - Cote : 1.95</option>
+                        </select>
+                        <br>                               
+                        <label>Mise :</label>
+                        <input id="misePari" [(ngModel)]="mise" (ngModelChange)="calculGains($event)" class="form-control" type="number"/>   
+                        <br>    
+                        <label>Gains potentiels :</label>
+                        <input [(ngModel)]="gains" disabled class="form-control" type="number"/>  
+                        <br>  
+                        <div class="row">
+                        <div class="col-lg-2">
+                        <button type="button" (click)="parier()"  class="btn btn-primary">Valider le Pari</button>
+                        </div> 
+                        <div class="col-lg-2">
+                        <button type="button" (click)="retourPari()" class="btn btn-secondary">Retour</button>
+                        </div>
+                        </div>
+              
+                </div>
+                <div class="col-lg-6">
+                       
+                </div>
+            </div>      
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

@@ -55,7 +55,7 @@ export class PariComponent implements OnInit {
         if(this.choixOption != 0){
         if(this.mise != null && this.mise > 0 && this.mise <= this.credit){
             this.gains = ((this.mise * this.choixOption) - this.mise);
-            this.gains = this.gains.toFixed(2);
+            this.gains = parseFloat(this.gains.toFixed(2));
         }
         else
         {

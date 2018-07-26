@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
+import { UserGuard } from '../_guard/userGuard';
+import { AdminGuard } from '../_guard/adminGuard';
 
 const routes: Routes = [
     {
@@ -17,7 +19,8 @@ const routes: Routes = [
             { path: 'components', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
             { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
             { path: 'pari', loadChildren: './pari/pari.module#PariModule' },
-            { path: 'mesparis', loadChildren: './mesparis/mespari.module#MespariModule' },
+            { path: 'mesparis', loadChildren: './mesparis/mespari.module#MespariModule', canActivate: [UserGuard] },
+            { path: 'admin', loadChildren: './admin/admin.module#AdminModule', canActivate: [AdminGuard]}
         ]
     }
 ];

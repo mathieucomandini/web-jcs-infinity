@@ -6,7 +6,7 @@
         <a [routerLink]="['/pari']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-money"></i>&nbsp;{{ 'JCS Easy Bets' | translate }}
         </a>
-        <a [routerLink]="['/mesparis']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a *ngIf="connexion" [routerLink]="['/mesparis']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-user"></i>&nbsp;{{ 'Mes paris' | translate }}
         </a>
         <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
@@ -47,6 +47,9 @@
         </div>
         <a [routerLink]="['/blank-page']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-file-o"></i>&nbsp;{{ 'Blank Page' | translate }}
+        </a>
+        <a *ngIf="administration" [routerLink]="['/admin']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-wrench"></i>&nbsp;{{ 'Administration' | translate }}
         </a>
         <div class="header-fields">
             <a (click)="rltAndLtr()" class="list-group-item">

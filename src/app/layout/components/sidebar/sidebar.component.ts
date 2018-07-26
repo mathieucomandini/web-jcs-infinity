@@ -13,6 +13,7 @@ export class SidebarComponent {
     pushRightClass: string = 'push-right';
 
     connexion = false;
+    administration = false;
     login = ' ';
 
     constructor(private translate: TranslateService, public router: Router) {
@@ -36,6 +37,10 @@ export class SidebarComponent {
         if(localStorage.getItem('login')){
             this.login = localStorage.getItem('login');
             this.connexion = true;
+        }
+
+        if(localStorage.getItem('admin') == '1'){
+            this.administration = true;
         }
     }
 

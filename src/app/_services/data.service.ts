@@ -68,6 +68,30 @@ export class DataService {
         }).catch (this.handleError).toPromise();
     }
 
+
+    /**
+     * PARIS
+     */
+    getMesStatsParis(id: string){
+        const json = {"id" : id };
+        return this.authHttp.post(this._apiURL + 'pari/statparis', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+
+    getMesParis(id: string){
+        const json = {"id" : id };
+        return this.authHttp.post(this._apiURL + 'pari/mesparis', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+
     handleError(error) {
         // console.log(error.json());
        //  $('#mySmallModalLabel').modal('toggle');

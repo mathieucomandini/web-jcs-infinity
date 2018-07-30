@@ -77,5 +77,6 @@ export class SidebarComponent {
 
     onLoggedout() {
         localStorage.removeItem('login');
+        localStorage.removeItem('admin');
     }
 }

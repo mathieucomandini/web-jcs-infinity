@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { NgModel } from '@angular/forms';
+import { DataService } from '../../_services/data.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-pari',
@@ -13,14 +15,14 @@ export class PariComponent implements OnInit {
     connexion = false;
     pariChoisi = false;
 
-    credit = 200;
+    credit = 0;
     creditEnJeu = 0;
     gainsPotTot = 0;
     mise = 0;
     gains = 0;
     choixOption = 0;
 
-    constructor() {
+    constructor(public router: Router, private dataService: DataService) {
 
     }
 
@@ -28,6 +30,11 @@ export class PariComponent implements OnInit {
         if(localStorage.getItem("login")){
             this.connexion = true;
         }
+
+        this.dataService.getMesStatsParis(localStorage.getItem("id")).then(data => {   
+            localStorage.setItem('statparis', JSON.stringify(data));
+            this.credit = data[0].argent_actuel;
+        })
     }
 
     onParier(){     

@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { NgModel } from '@angular/forms';
+import { DataService } from '../../_services/data.service';
+import { Router } from '@angular/router';
+
+
+import * as $ from 'jquery';
+import 'datatables.net';
+import 'datatables.net-bs4';
 
 @Component({
     selector: 'app-mespari',
@@ -13,14 +20,18 @@ export class MespariComponent implements OnInit {
     connexion = false;
     pariChoisi = false;
 
-    credit = 200;
+    credit = 0;
     creditEnJeu = 0;
     gainsPotTot = 0;
     mise = 0;
     gains = 0;
     choixOption = 0;
+    nbrefund = 0;
 
-    constructor() {
+    tablemesParis;
+    mesParis = [];
+
+    constructor(public router: Router, private dataService: DataService) {
 
     }
 
@@ -28,6 +39,39 @@ export class MespariComponent implements OnInit {
         if(localStorage.getItem("login")){
             this.connexion = true;
         }
+
+        this.dataService.getMesStatsParis(localStorage.getItem("id")).then(data => {   
+            localStorage.setItem('statparis', JSON.stringify(data));
+            this.credit = data[0].argent_actuel;
+            this.nbrefund = data[0].nbrefund;
+        })
+     
+        this.getParis();
+    }
+
+    getParis(){
+        var current = this;
+
+        //this.dataService.getMesParis(localStorage.getItem('id')).then(data => {this.mesParis = data;
+
+            $(document).ready(function(){
+              current.tablemesParis = $('#tableparis').DataTable( {
+                data: current.mesParis,
+                columns: [
+                    { title: "Intitulé","data": "par_question"},
+                    { title: "Choix","Cote": "cote_pari" },
+                    { title: "Mise","data": "mise_pari" },
+                    { title: "Gain","data": "gain" },
+                    { title: "Resultat", "data": "par_solution"}
+                ],
+                language: {
+                  'url': './assets/dataTables_fr_FR.json',
+                  'emptyTable' : "Pas de paris pour ce compte"
+                 },
+            } );      
+          });
+           
+          //});    
     }
 
     onParier(){     

@@ -82,9 +82,36 @@ export class DataService {
     }
 
 
+    getParisEnCours(){
+        return this.authHttp.post(this._apiURL + 'pari/parisencours', null)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+
     getMesParis(id: string){
         const json = {"id" : id };
         return this.authHttp.post(this._apiURL + 'pari/mesparis', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    getMesParisEnCours(id: string){
+        const json = {"id" : id };
+        return this.authHttp.post(this._apiURL + 'pari/mesparisencours', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    parier(iduser, idpari, issue, cote, mise){
+        const json = {"iduser":iduser,"idpari":idpari,"issue":issue,"cote":cote,"mise":mise};
+        return this.authHttp.post(this._apiURL + 'pari/parier', json)
         .map(res => res.json())
         .map(data => {
             return data;

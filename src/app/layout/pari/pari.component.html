@@ -37,13 +37,13 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <td>Autoroot vs 150 IQ</td>
-                                        <td>Autoroot</td>
-                                        <td>1.85</td>
-                                        <td>150IQ</td>
-                                        <td>1.95</td>
-                                        <th><button type="button" (click)="onParier()" class="btn btn-secondary">Parier</button></th>
+                                    <tr *ngFor="let item of parisEnCours">
+                                        <td>{{item.par_question}}</td>
+                                        <td>{{item.par_issue_1}}</td>
+                                        <td>{{item.par_cote_evo_1}}</td>
+                                        <td>{{item.par_issue_2}}</td>
+                                        <td>{{item.par_cote_evo_2}}</td>
+                                        <th><button type="button" (click)="onParier(item)" class="btn btn-secondary">Parier</button></th>
                                     </tr>
                                     </tbody>
                            </table>
@@ -56,10 +56,10 @@
                 <div class="col-lg-6">
                          
                      
-                        <label>Qui sera le gagnant entre Autoroot et 150IQ ?</label>
+                        <label>{{intitule}}</label>
                         <select [(ngModel)]="choixOption" (ngModelChange)="selectionChange($event)" class="form-control">
-                                <option value="1.85">Autoroot - Cote : 1.85</option>
-                                <option value="1.95">150IQ - Cote : 1.95</option>
+                                <option value="1">{{issue1}} - Cote : {{cote1}}</option>
+                                <option value="2">{{issue2}} - Cote : {{cote2}}</option>
                         </select>
                         <br>                               
                         <label>Mise :</label>

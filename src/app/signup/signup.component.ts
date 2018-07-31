@@ -36,11 +36,11 @@ export class SignupComponent implements OnInit {
                 this.dataService.checkLogin(this.login).then(data => {
                     if(data.login){
                         this.dataService.inscription(current.login, current.mdp).then(data => {
-                            if(data.success)
+                            if(data != null)
                             {
                                 localStorage.setItem('login', current.login);
-                                localStorage.setItem('id', "nique");
-                                localStorage.setItem('admin', "0");
+                                localStorage.setItem('id', data[0].uti_id);
+                                localStorage.setItem('admin', data[0].uti_admin);
                                 location.replace('/dashboard');
                             }
                         });

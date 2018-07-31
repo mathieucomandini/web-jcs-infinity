@@ -30,6 +30,7 @@ export class MespariComponent implements OnInit {
 
     tablemesParis;
     mesParis = [];
+    mesParisEnCours = [];
 
     constructor(public router: Router, private dataService: DataService) {
 
@@ -40,11 +41,7 @@ export class MespariComponent implements OnInit {
             this.connexion = true;
         }
 
-        this.dataService.getMesStatsParis(localStorage.getItem("id")).then(data => {   
-            localStorage.setItem('statparis', JSON.stringify(data));
-            this.credit = data[0].argent_actuel;
-            this.nbrefund = data[0].nbrefund;
-        })
+        this.gestionValeurListe();
      
         this.getParis();
     }
@@ -52,16 +49,19 @@ export class MespariComponent implements OnInit {
     getParis(){
         var current = this;
 
-        //this.dataService.getMesParis(localStorage.getItem('id')).then(data => {this.mesParis = data;
+        this.dataService.getMesParis(localStorage.getItem('id')).then(data => {this.mesParis = data;
+
+            console.log(current.mesParis);
 
             $(document).ready(function(){
               current.tablemesParis = $('#tableparis').DataTable( {
                 data: current.mesParis,
                 columns: [
                     { title: "Intitulé","data": "par_question"},
-                    { title: "Choix","Cote": "cote_pari" },
+                    { title: "Choix","data": "issue_choisi" },
                     { title: "Mise","data": "mise_pari" },
-                    { title: "Gain","data": "gain" },
+                    { title: "Cote","data": "cote_pari" },
+                    { title: "Date","data": "date_pari" },
                     { title: "Resultat", "data": "par_solution"}
                 ],
                 language: {
@@ -71,36 +71,48 @@ export class MespariComponent implements OnInit {
             } );      
           });
            
-          //});    
+          });    
     }
 
-    onParier(){     
-        this.pariChoisi = true;
+    chargerDonnee(callback){
+
+        var current = this;
+
+        this.dataService.getMesStatsParis(localStorage.getItem("id")).then(data => {   
+            localStorage.setItem('statparis', JSON.stringify(data));
+            this.credit = data[0].argent_actuel;
+            this.nbrefund = data[0].nb_refund;
+
+    
+                current.dataService.getMesParisEnCours(localStorage.getItem("id")).then(data => {
+                    current.mesParisEnCours = data;
+
+                    callback();
+                });
+
+        });      
     }
 
-    retourPari(){
-        this.pariChoisi = false;
-    }
+    gestionValeurListe(){
 
-    parier(){
+        var current = this;
 
-        if(this.mise > 0 && this.mise <= this.credit)
-        {
-            this.credit = this.credit - this.mise;
-            this.creditEnJeu = this.creditEnJeu + this.mise;
-            this.mise = 0;
-            this.pariChoisi = false;
-            this.gainsPotTot = this.gainsPotTot + this.gains;
-            this.gains = 0;
-        }
-    }
-
-    calculGains($event){
-     
-    }
-
-    selectionChange($event){
-        this.calculGains(null);
+        this.chargerDonnee(function(){
+            var miseenjeux = 0
+            var gainstotpot = 0;
+    
+            current.mesParisEnCours.forEach(function(monpari){
+                
+                miseenjeux += monpari.mise_pari;
+        
+                gainstotpot += ((monpari.mise_pari * monpari.cote_pari) - monpari.mise_pari);
+                gainstotpot = parseFloat(gainstotpot.toFixed(2));
+    
+            });
+    
+            current.creditEnJeu = miseenjeux;
+            current.gainsPotTot = gainstotpot;
+        });
     }
 
   

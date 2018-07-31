@@ -1,4 +1,133 @@
 <div [@routerTransition]>
 
-   Nik Drako
+        <div *ngIf="!selectionPari">
+        <br>
+        <h5>Panneau d'administration</h5>
+        <br>
+        <br>
+
+        <div class="row">
+                <div class="col-lg-6">
+                        <h6>Ajouter un pari :</h6>
+                        <br>
+                        <label>Question :</label>
+                        <input id="intitule" [(ngModel)]="question"  class="form-control" type="text"/>   
+                        <br>
+                        <label>Choix 1 :</label>
+                        <input id="choix1" [(ngModel)]="choix1"  class="form-control" type="text"/>   
+                        <br>
+                        <label>Cote 1 :</label>
+                        <input id="misePari" [(ngModel)]="cote1" class="form-control" type="number"/> 
+                        <br>
+                     
+
+
+                </div>
+                <div class="col-lg-6">
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <label>Choix 2 :</label>
+                        <input id="choix2" [(ngModel)]="choix1"  class="form-control" type="text"/>   
+                        <br>
+                        <label>Cote 2 :</label>
+                        <input id="misePari" [(ngModel)]="cote2" class="form-control" type="number"/> 
+                        <br>
+                </div>
+                
+        </div>
+        <div class="row">
+            <div class="col-lg-4">             
+                                <form class="form-inline mb-3">
+                                    <div class="form-group">
+                                        <div class="input-group datepicker-input">
+                                            <input class="form-control" placeholder="yyyy-mm-dd"
+                                                name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
+                                            <button class="input-group-addon" (click)="d.toggle()" type="button">
+                                                <!-- <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/> -->
+                                                <span class="fa fa-calendar"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="alert alert-info mb-0">
+                                    <strong>Model: </strong> {{ date | json }}
+                                </div>
+
+                                <br>
+                                <ngb-timepicker [(ngModel)]="heure"></ngb-timepicker>
+                                <div class="alert alert-info">
+                                    <b>Selected time: </b>{{heure | json}}
+                                </div>        
+            </div>
+    
+        </div>
+        <br>
+        <button type="button" (click)="ajoutPari()" class="btn btn-primary">Ajouter le Pari</button>
+        
+
+        <div>
+            <br>
+            <br>
+            <label>Gérer les paris :</label>
+            <div class="row">
+                    <div class="col-lg-12">
+                            <table class="table">
+                                    <thead class="thead-inverse">
+                                            <tr>
+                                                    <th>Intitulé du Pari</th>
+                                                    <th>Issue 1</th>
+                                                    <th>Cote</th>
+                                                    <th>Issue 2</th>
+                                                    <th>Cote</th>
+                                                    <th>Résoudre</th>
+                                                    <th>Supprimer</th>
+                                                </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr *ngFor="let item of listeParisNonResolu">
+                                                    <td>{{item.par_question}}</td>
+                                                    <td>{{item.par_issue_1}}</td>
+                                                    <td>{{item.par_cote_evo_1}}</td>
+                                                    <td>{{item.par_issue_2}}</td>
+                                                    <td>{{item.par_cote_evo_2}}</td>
+                                                    <th><button type="button" (click)="resoudre(item)" class="btn btn-primary">Résoudre</button></th>
+                                                    <th><button type="button" (click)="supprimer(item)" class="btn btn-secondary">Supprimer</button></th>
+                                                </tr>
+                                                </tbody>
+                                       </table>
+                                </div>
+            </div>
+
+        </div>
+
+        </div>
+
+        <div *ngIf="selectionPari">
+                <br>
+                <label>Solution :</label>
+                <br>
+                <div class="row">
+                    <div class="col-lg-6">
+                            <select [(ngModel)]="choixOption" class="form-control">
+                                    <option value="{{itemPari.par_issue_1}}">{{itemPari.par_issue_1}}</option>
+                                    <option value="{{itemPari.par_issue_2}}">{{itemPari.par_issue_2}}</option>
+                            </select>
+                     </div> 
+                </div>
+                <br>
+                <div class="row">
+                        <div class="col-lg-1">
+                        <button type="button" (click)="validerResolution" class="btn btn-primary">Résoudre</button>
+                        </div> 
+                        <div class="col-lg-1">
+                        <button type="button" (click)="retour()" class="btn btn-secondary">Retour</button>
+                        </div>
+                </div>
+
+        </div>
+              
 </div>

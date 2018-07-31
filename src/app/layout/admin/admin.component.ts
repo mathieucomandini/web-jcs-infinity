@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { NgModel } from '@angular/forms';
+import { DataService } from '../../_services/data.service';
+import { Router } from '@angular/router';
+
 
 @Component({
     selector: 'app-admin',
@@ -10,54 +13,77 @@ import { NgModel } from '@angular/forms';
 })
 export class AdminComponent implements OnInit {
   
-    connexion = false;
-    pariChoisi = false;
 
-    credit = 200;
-    creditEnJeu = 0;
-    gainsPotTot = 0;
-    mise = 0;
-    gains = 0;
-    choixOption = 0;
+    listeParisNonResolu = [];
 
-    constructor() {
+    question = '';
+    cote1 = 0;
+    cote2 = 0;
+    choix1 = '';
+    choix2 = '';
+
+    date: any;
+    heure: any;
+
+    itemPari: any;
+    
+    choixOption = '';
+
+    selectionPari = false;
+
+    constructor(public router: Router, private dataService: DataService) {
 
     }
 
     ngOnInit() {
-        if(localStorage.getItem("login")){
-            this.connexion = true;
+       
+        this.majListe();
+    }
+
+    ajoutPari(){
+        if(this.question != '' && this.cote1 != 0 && this.cote2 != 0 && this.choix1 != '' && this.choix2 != '' && this.date != null && this.heure != null){
+
+            //à gerer
+            var datetime = '';
+            this.dataService.ajoutPari(this.question, this.cote1, this.cote2, this.choix1, this.choix2, datetime).then(data => {
+
+                this.question = '';
+                this.cote1 = 0;
+                this.cote2 = 0;
+                this.choix1 = '';
+                this.choix2 = '';
+
+                this.majListe();
+            });
+        }
+        else{
+            alert("Il faut remplir tous les champs");
         }
     }
 
-    onParier(){     
-        this.pariChoisi = true;
+    resoudre(item){
+        this.itemPari = item;
+        this.selectionPari = true;
     }
 
-    retourPari(){
-        this.pariChoisi = false;
+    validerResolution(){
+
     }
 
-    parier(){
-
-        if(this.mise > 0 && this.mise <= this.credit)
-        {
-            this.credit = this.credit - this.mise;
-            this.creditEnJeu = this.creditEnJeu + this.mise;
-            this.mise = 0;
-            this.pariChoisi = false;
-            this.gainsPotTot = this.gainsPotTot + this.gains;
-            this.gains = 0;
-        }
+    retour(){
+        this.selectionPari = false;
+        this.itemPari = null;
+        this.choixOption = '';
     }
 
-    calculGains($event){
-     
+    supprimer(item){
+        this.majListe();
     }
 
-    selectionChange($event){
-        this.calculGains(null);
+    majListe(){
+        this.dataService.getParisNonResolu().then(data => {
+            this.listeParisNonResolu = data;
+        });
     }
-
   
 }

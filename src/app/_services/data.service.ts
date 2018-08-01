@@ -135,6 +135,15 @@ export class DataService {
         }).catch (this.handleError).toPromise();
     }
 
+    resoudrePari(id, solution){
+        const json = {"id" : id, "solution" : solution };
+        return this.authHttp.post(this._apiURL + 'pari/resoudrepari', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
 
     handleError(error) {
         // console.log(error.json());

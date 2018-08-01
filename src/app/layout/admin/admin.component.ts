@@ -44,7 +44,7 @@ export class AdminComponent implements OnInit {
         if(this.question != '' && this.cote1 != 0 && this.cote2 != 0 && this.choix1 != '' && this.choix2 != '' && this.date != null && this.heure != null){
 
             //à gerer
-            var datetime = '';
+            var datetime = this.date.year+':'+this.date.month+':'+this.date.day+' '+this.heure.hour+':'+this.heure.minute+':'+this.heure.second;
             this.dataService.ajoutPari(this.question, this.cote1, this.cote2, this.choix1, this.choix2, datetime).then(data => {
 
                 this.question = '';
@@ -67,7 +67,18 @@ export class AdminComponent implements OnInit {
     }
 
     validerResolution(){
-
+        if(this.choixOption != ''){
+            this.dataService.resoudrePari(this.itemPari.par_id, this.choixOption).then(data => {
+                this.majListe();
+                this.selectionPari = false;
+                this.itemPari = null;
+                this.choixOption = '';
+            })
+        }
+        else
+        {
+            alert("Choisir une issue");
+        }
     }
 
     retour(){

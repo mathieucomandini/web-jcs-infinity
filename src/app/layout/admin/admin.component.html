@@ -31,7 +31,7 @@
                         <br>
                         <br>
                         <label>Choix 2 :</label>
-                        <input id="choix2" [(ngModel)]="choix1"  class="form-control" type="text"/>   
+                        <input id="choix2" [(ngModel)]="choix2"  class="form-control" type="text"/>   
                         <br>
                         <label>Cote 2 :</label>
                         <input id="misePari" [(ngModel)]="cote2" class="form-control" type="number"/> 
@@ -121,7 +121,7 @@
                 <br>
                 <div class="row">
                         <div class="col-lg-1">
-                        <button type="button" (click)="validerResolution" class="btn btn-primary">Résoudre</button>
+                        <button type="button" (click)="validerResolution()" class="btn btn-primary">Résoudre</button>
                         </div> 
                         <div class="col-lg-1">
                         <button type="button" (click)="retour()" class="btn btn-secondary">Retour</button>

@@ -51,8 +51,6 @@ export class MespariComponent implements OnInit {
 
         this.dataService.getMesParis(localStorage.getItem('id')).then(data => {this.mesParis = data;
 
-            console.log(current.mesParis);
-
             $(document).ready(function(){
               current.tablemesParis = $('#tableparis').DataTable( {
                 data: current.mesParis,

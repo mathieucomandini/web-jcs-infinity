@@ -48,6 +48,16 @@ export class DataService {
         return this.authHttp.post(this._apiURL + 'user/modify', json);
     }
 
+       //verifier le mot de passe par id
+    verifierPasse(id: string, passe: string){
+        const json = {'id': id, 'passe': passe};
+        return this.authHttp.post(this._apiURL + 'user/verifierpasse', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
        //check si le login est deja dans la base
     checkLogin(login: string){
         const json = { "login" : login };
@@ -146,6 +156,14 @@ export class DataService {
     supprimerPari(id){
         const json = {"id" : id};
         return this.authHttp.post(this._apiURL + 'pari/supprimerpari', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    getListeParieurs(){
+        return this.authHttp.post(this._apiURL + 'pari/listeparieur', null)
         .map(res => res.json())
         .map(data => {
             return data;

@@ -6,6 +6,8 @@ import { AdminGuard } from '../_guard/adminGuard';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { MespariModule } from './mesparis/mespari.module';
 import { AdminModule } from './admin/admin.module';
+import { ProfilModule } from './profil/profil.module';
+import { PariClassementModule } from './pari-classement/pari-classement.module';
 
 const routes: Routes = [
     {
@@ -23,7 +25,9 @@ const routes: Routes = [
             { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
             { path: 'pari', loadChildren: './pari/pari.module#PariModule' },
             { path: 'mesparis', loadChildren: () => MespariModule, canActivate: [UserGuard] },
-            { path: 'admin', loadChildren: () => AdminModule, canActivate: [AdminGuard]}
+            { path: 'admin', loadChildren: () => AdminModule, canActivate: [AdminGuard]},
+            { path: 'profil', loadChildren: () => ProfilModule, canActivate: [UserGuard]},
+            { path: 'pari-classement', loadChildren: () => PariClassementModule}
         ]
     }
 ];

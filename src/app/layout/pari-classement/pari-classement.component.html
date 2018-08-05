@@ -1,0 +1,49 @@
+<div [@routerTransition]>
+
+    <!--<app-pari [heading]="'Paris'" [icon]="'fa-money'"></app-pari>-->
+
+    <div>
+        <div>
+
+            <br>
+            <h5>Classement des parieurs</h5>
+            <br>
+            <br>
+       
+            <div>
+                <label>Liste des parieurs : </label>
+                <div class="row">
+                    <div class="col-lg-12">
+                            <table class="table">
+                                    <thead class="thead-inverse">
+                                    <tr>
+                                        <th>Pseudo</th>
+                                        <th>Nombre de paris</th>
+                                        <th>Réussis</th>
+                                        <th>Échecs</th>
+                                        <th>Renflouement</th>
+                                        <th>JC$</th>
+                                        <th>JC$ pondéré</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let item of parieur">
+                                        <td>{{item.uti_login}}</td>
+                                        <td>{{item.nb_pari}}</td>
+                                        <td>{{item.nb_win}}</td>
+                                        <td>{{item.nb_lose}}</td>
+                                        <td>{{item.nb_refund}}</td>
+                                        <td>{{item.argent_actuel}}</td>
+                                        <td>{{item.argent_actuel-item.argent_refund}}</td>
+                                    </tr>
+                                    </tbody>
+                           </table>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+
+    </div>
+
+</div>

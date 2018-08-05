@@ -1,0 +1,67 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Profil'" [icon]="'fa-user'"></app-page-header>
+   
+    <div class="row">
+
+    <div class="col-md-2">
+        <font size="4">Login : </font>  
+    </div>
+    <div class="col-md-6">
+        <input type="text" maxlength="40" [attr.disabled]="!modifierLogin ? '' : null" style="max-width: 600px;" name="newlogin" [(ngModel)]="newlog" class="form-control input-underline" id="newlogin" placeholder="{{login}}" #newlogin="ngModel">
+        <div *ngIf="isLoginPris" class="alert-danger"><p></p>Le login est déjà pris pas un autre compte.<p></p></div>
+        <!--<div *ngIf="successModifLogin" class="alert">Le mail a été modifié.</div>-->
+    </div>
+    <div class="col-mx-1">
+        <button type="button" class="btn btn-outline-primary" data-placement="top" ngbTooltip="Editer" (click)="booleanLog()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+    </div>
+    <div class="col-md-1" *ngIf="modifierLogin">
+        <button type="button" class="btn btn-outline-primary" data-placement="top" ngbTooltip="Valider" (click)="modifierLeLogin()"><i class="fa fa-check" aria-hidden="true"></i></button>
+    </div>
+
+    </div>
+
+    <br>
+
+    <div class="row">
+
+            <div class="col-md-2">
+                <font size="4">Mot de passe : </font>  
+            </div>
+            <div class="col-md-6">
+                <input type="password" disabled style="max-width: 600px;" class="form-control input-underline" placeholder="********">
+
+                <br>
+
+                <form method="post" role="form" class="contactForm" #identificationForm="ngForm">
+                        <div class="form-content" *ngIf="modifierPasse">
+                                <div class="form-group">
+                                  <input type="password" maxlength="50" style="max-width: 600px;" name="oldpasse" required [(ngModel)]="oldmdp" class="form-control input-underline" id="oldpasse" placeholder="Ancien mot de passe" #oldpasse="ngModel">
+                                </div>
+                              <div *ngIf="badPasse" class="alert-danger">L'ancien mot de passe n'est pas le bon.<p></p></div>
+                              <div *ngIf="successModifPasse" class="alert">Le mot de passe a été modifié.<p></p></div>
+                      
+                                <div class="form-group">
+                                    <input type="password" maxlength="50" style="max-width: 600px;" name="newpasse" minlength="4" required [(ngModel)]="newmdp" class="form-control input-underline" id="newpasse" placeholder="Nouveau mot de passe" #newpasse="ngModel">
+                                </div>
+                                <div *ngIf="incorrectPasse" class="alert-danger">Veuillez rentrer un mot de passe de 8 caratères minimum.<p></p></div>
+                      
+                                <div class="form-group">
+                                  <input type="password" maxlength="50" style="max-width: 600px;" name="cnewpasse" minlength="4" required [(ngModel)]="cnewmdp" class="form-control input-underline" id="cnewpasse" placeholder="Confirmer le nouveau mot de passe" #cnewpasse="ngModel">
+                              </div>
+                                <div *ngIf="erreurSaisie" class="alert-danger">Le mot de passe ne correspond pas.<p></p></div>
+
+                                <input type="button" [disabled]="identificationForm.form.invalid"  class="btn rounded-btn" value="Valider" (click)="modifierLeMdp()">
+                            </div>        
+                            
+                            &nbsp;
+                </form>
+            </div>
+            <div class="col-mx-2">
+                <button type="button" class="btn btn-outline-primary" data-placement="top" ngbTooltip="Editer" (click)="booleanPasse()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+            </div>
+        
+    </div>
+
+    <br>
+
+</div>

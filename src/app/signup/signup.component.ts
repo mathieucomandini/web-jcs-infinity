@@ -50,6 +50,8 @@ export class SignupComponent implements OnInit {
                         current.memeLogin = true;
                         setTimeout(() => current.memeLogin = false, 2000); 
                     }
+                }, error => {
+                    alert("Problème de connexion au serveur, essayer de recharger la page.")
                 });
             }
             else

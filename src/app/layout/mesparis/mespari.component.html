@@ -17,7 +17,35 @@
             <br>
             <br>
 
-            <table id="tableparis" class="display" width="100%"></table>
+            <!--<table id="tableparis" class="display" width="100%"></table>-->
+
+            <label>Mes paris : </label>
+            <div class="row">
+                <div class="col-lg-12">
+                        <table class="table">
+                                <thead class="thead-inverse">
+                                <tr>
+                                    <th>Intitulé du Pari</th>
+                                    <th>Choix</th>
+                                    <th>Mise</th>
+                                    <th>Cote</th>
+                                    <th>Date</th>
+                                    <th>Resultat</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr *ngFor="let item of mesParis">
+                                    <td>{{item.par_question}}</td>
+                                    <td>{{item.issue_choisi}}</td>
+                                    <td>{{item.mise_pari}}</td>
+                                    <td>{{item.cote_pari}}</td>
+                                    <td>{{item.date_pari | date:'dd/MM/yyyy à HH:mm:ss'}}</td>
+                                    <td>{{item.par_solution}}</td>
+                                </tr>
+                                </tbody>
+                       </table>
+                </div>
+            </div>
      
     </div>
 

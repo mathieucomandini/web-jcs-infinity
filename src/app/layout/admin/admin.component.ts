@@ -88,7 +88,11 @@ export class AdminComponent implements OnInit {
     }
 
     supprimer(item){
-        this.majListe();
+        this.dataService.supprimerPari(item.par_id).then(data => {
+            this.majListe();
+        }, error => {
+            console.log("error");
+        });
     }
 
     majListe(){

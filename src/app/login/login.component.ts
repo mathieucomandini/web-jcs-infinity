@@ -41,7 +41,10 @@ export class LoginComponent implements OnInit {
                         localStorage.setItem('statparis', JSON.stringify(data));
                         location.replace('/dashboard');
                     });                
-                }        
+                } else {
+                    current.nonAutorise = true;
+                    setTimeout(() => current.nonAutorise = false, 2000);    
+                }      
             }, error => {
                 console.log(error);
                 current.nonAutorise = true;

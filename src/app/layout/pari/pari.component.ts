@@ -54,6 +54,8 @@ export class PariComponent implements OnInit {
         this.cote1 = pari.par_cote_evo_1;
         this.cote2 = pari.par_cote_evo_2;
 
+        console.log(pari.par_date);
+
         this.objetPari = pari;
         this.pariChoisi = true;
     }
@@ -79,12 +81,15 @@ export class PariComponent implements OnInit {
             this.creditEnJeu = this.creditEnJeu + this.mise;
             this.gainsPotTot = this.gainsPotTot + this.gains;
 
+            var date = new Date();
+            
             this.dataService.parier(localStorage.getItem("id"),this.objetPari.par_id,this.choix,this.cote,this.mise).then(data => {
                 this.gains = 0;
                 this.mise = 0;
                 this.gestionValeurListe();
                 this.pariChoisi = false;
             });
+
         }
         else
         {
@@ -172,7 +177,4 @@ export class PariComponent implements OnInit {
         });
     }
 
-
-
-  
 }

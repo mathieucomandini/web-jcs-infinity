@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
     selector: 'app-stat',
@@ -11,6 +12,8 @@ export class StatComponent implements OnInit {
     @Input() count: number;
     @Input() label: string;
     @Input() data: number;
+    @Input() path: string;
+    @Input() target: string;
     @Output() event: EventEmitter<any> = new EventEmitter();
 
     constructor() {}

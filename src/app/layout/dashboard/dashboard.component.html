@@ -1,5 +1,5 @@
 <div [@routerTransition]>
-    <h2 class="text-muted">JCS Infinity</h2>
+    <h2 class="text-muted">Bienvenue sur JCS Infinity</h2>
     <div class="row">
         <div class="col-md-12">
             <ngb-carousel>
@@ -11,6 +11,35 @@
                     </div>
                 </ng-template>
             </ngb-carousel>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-md-12">
+        <h3>Les JCS qu'est ce que c'est ?</h3>
+        <br>
+        <p>Les JCS ou Jeuxvideo.com Championship Series est un tournoi de League of Legends au départ crée par la communauté du forum league of legends du site jeuxvideo.com 
+           qui se veut une expérience inédite en proposant à ses joueurs de jouer selon un format semblable à un split de LCS se déroulant sur plusieurs semaines. 
+        </p>
+        <p>
+            Les équipes sont formées de manière équitable via un système d'enchères en blindpick permettant aux capitaines de constituer des équipes selon les descriptions données par les joueurs et celles-ci 
+            s'affrontent chaque semaine afin de se classer pour participer aux playoffs du tournoi.
+        </p>
+        <p>
+            Après une saison 1 avec 6 équipes, la compétition a prit de l'ampleur en créeant deux ligues de 8 équipes chacunes pour la saison 2 permettant ainsi aux joueurs de tous les niveaux de participer.
+            Aujourd'hui le tournoi tente de faire aussi grand avec une saison 3 qui s'annonce explosive.
+        </p>
+        <br>
+        <h3>Rejoindre les JCS</h3>
+        <br>
+        <p>Pour participer à la compétition, le meilleur moyen est de rejoindre le discord pour suivre les dernières infos et être prêt à s'inscrire lorsque qu'une nouvelle saison du tournoi commence.</p>
+        <p>Il est possible de rejoindre le discord avec ce lien : <a href="https://discord.gg/bh3SCRj">https://discord.gg/bh3SCRj</a> </p>
+        <br>
+        <h3>JCS Infinity</h3>
+        <br>
+        <p>JCS Infinity est un site web hébergé et géré par les organisateurs du tournoi se voulant comme un plus pour celui-ci en offrant un système de pari et un suivi statistiques de la compétition
+            permettant aux joueurs d'aller plus loin et de faire des JCS un tournoi beaucoup plus sérieux et amusant à suivre. </p>
+        <p>Pour toute question concernant le site, veuillez vous adresser à Forandos, Maw Lotov ou Cohort sur le discord du tournoi.</p>
         </div>
     </div>
     <hr>
@@ -27,35 +56,5 @@
         <div class="col-xl-3 col-lg-6">
             <app-stat [bgClass]="'danger'" [icon]="'fa-money'" [path]="'/pari'" [label]="'JCS Easy Bets'"></app-stat>
         </div>
-    </div>
-    <hr>
-    <div class="row">
-        <div class="col-lg-8">
-            <div class="card card-default">
-                <div class="card-header">
-                    <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline
-                </div>
-                <!-- /.card-header -->
-                <app-timeline></app-timeline>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-        </div>
-        <!-- /.col-lg-8 -->
-        <div class="col-lg-4">
-            <div class="card card-default mb-3">
-                <div class="card-header">
-                    <i class="fa fa-bell fa-fw"></i> Notifications card
-                </div>
-                <!-- /.card-header -->
-                <app-notification></app-notification>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-            <app-chat></app-chat>
-            <!-- /.card .chat-card -->
-        </div>
-        <!-- /.col-lg-4 -->
     </div>
 </div>

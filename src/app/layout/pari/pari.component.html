@@ -35,6 +35,7 @@
                                         <th>Cote</th>
                                         <th>Issue 2</th>
                                         <th>Cote</th>
+                                        <th>Date limite</th>
                                         <th>Parier</th>
                                     </tr>
                                     </thead>
@@ -45,6 +46,7 @@
                                         <td>{{item.par_cote_evo_1}}</td>
                                         <td>{{item.par_issue_2}}</td>
                                         <td>{{item.par_cote_evo_2}}</td>
+                                        <td>{{item.par_date_fin | date:'dd/MM/yyyy à HH:mm:ss'}}</td>
                                         <th><button type="button" (click)="onParier(item)" class="btn btn-secondary">Parier</button></th>
                                     </tr>
                                     </tbody>

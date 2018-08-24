@@ -170,6 +170,15 @@ export class DataService {
         }).catch (this.handleError).toPromise();
     }
 
+    renflouerUser(id){
+        const json = {"id" : id};
+        return this.authHttp.post(this._apiURL + 'pari/renflouer', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
 
     handleError(error) {
         // console.log(error.json());

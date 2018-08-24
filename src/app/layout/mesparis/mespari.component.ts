@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import * as $ from 'jquery';
 import 'datatables.net';
 import 'datatables.net-bs4';
+import { StorageService } from '../../_services/storage.service';
 
 @Component({
     selector: 'app-mespari',
@@ -19,6 +20,7 @@ export class MespariComponent implements OnInit {
   
     connexion = false;
     pariChoisi = false;
+    peutRenflouer = false;
 
     credit = 0;
     creditEnJeu = 0;
@@ -110,7 +112,27 @@ export class MespariComponent implements OnInit {
     
             current.creditEnJeu = miseenjeux;
             current.gainsPotTot = gainstotpot;
+
+            if(current.creditEnJeu + current.credit <= 50){
+                current.peutRenflouer = true;
+            }
         });
+    }
+
+    renflouement(){
+        if(confirm("Vous allez récupérer 200 JC$ mais cela sera déduit de votre score total, continuer ?")){
+            this.dataService.renflouerUser(localStorage.getItem('id')).then(data => {
+                if(data.success){
+                    this.credit += 200;
+                    this.nbrefund += 1;
+                    this.peutRenflouer = false;
+                }
+                else
+                {
+                    alert("Erreur accès à la base, voir avec Forandos");
+                }  
+            });
+        }
     }
 
   

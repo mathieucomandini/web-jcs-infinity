@@ -17,7 +17,11 @@
             <br>
             <br>
 
-            <!--<table id="tableparis" class="display" width="100%"></table>-->
+            <div *ngIf="peutRenflouer">
+                <button type="button" (click)="renflouement()" class="btn btn-danger">Renflouer mon compte</button>
+                <br>
+                <br>
+            </div>
 
             <label>Mes paris : </label>
             <div class="row">

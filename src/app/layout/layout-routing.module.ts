@@ -8,6 +8,7 @@ import { MespariModule } from './mesparis/mespari.module';
 import { AdminModule } from './admin/admin.module';
 import { ProfilModule } from './profil/profil.module';
 import { PariClassementModule } from './pari-classement/pari-classement.module';
+import { ArticleModule } from './article/article.module';
 
 const routes: Routes = [
     {
@@ -27,7 +28,8 @@ const routes: Routes = [
             { path: 'mesparis', loadChildren: () => MespariModule, canActivate: [UserGuard] },
             { path: 'admin', loadChildren: () => AdminModule, canActivate: [AdminGuard]},
             { path: 'profil', loadChildren: () => ProfilModule, canActivate: [UserGuard]},
-            { path: 'pari-classement', loadChildren: () => PariClassementModule}
+            { path: 'pari-classement', loadChildren: () => PariClassementModule},
+            { path: 'article', loadChildren: () => ArticleModule}
         ]
     }
 ];

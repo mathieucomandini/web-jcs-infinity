@@ -3,12 +3,15 @@
     <div class="row">
         <div class="col-md-12">
             <ngb-carousel>
-                <ng-template ngbSlide *ngFor="let slider of sliders">
+                <!--<ng-template ngbSlide *ngFor="let slider of sliders">
                     <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide" width="100%">
                     <div class="carousel-caption">
                         <h3>{{slider.label}}</h3>
                         <p>{{slider.text}}</p>
                     </div>
+                </ng-template>-->
+                <ng-template ngbSlide>
+                    <img class="img-fluid mx-auto d-block" src="assets/images/banniere.jpg" width="100%">
                 </ng-template>
             </ngb-carousel>
         </div>
@@ -45,16 +48,88 @@
     <hr>
     <div class="row">
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'primary'" [icon]="'fa-twitch'" [path]="'https://www.twitch.tv/jvc_championship_series'" [target]="'_blank'" [label]="'Chaîne Twitch'" ></app-stat>
+            <div class="card text-white bg-primary">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col col-xs-3">
+                            <i class="fa fa-twitch fa-5x"></i>
+                        </div>
+                        <div class="col col-xs-9 text-right">
+                            <div class="d-block huge"></div>
+                            <div class="d-block">Chaîne Twitch</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="float-left">Lien</span>
+                    <a href="https://www.twitch.tv/jvc_championship_series" target="_blank" class="float-right card-inverse">
+                        <span ><i style="color: white;" class="fa fa-arrow-circle-right fa-2x"></i></span>
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'warning'" [icon]="'fa-twitter'" [path]="'https://twitter.com/JVC_LCS'" [target]="'_blank'" [label]="'Suivre le Twitter'" ></app-stat>
+            <div class="card text-white bg-warning">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col col-xs-3">
+                            <i class="fa fa-twitter fa-5x"></i>
+                        </div>
+                        <div class="col col-xs-9 text-right">
+                            <div class="d-block huge"></div>
+                            <div class="d-block">Suivre le Twitter</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="float-left">Lien</span>
+                    <a href="https://twitter.com/JVC_LCS" target="_blank" class="float-right card-inverse">
+                        <span ><i style="color: white;" class="fa fa-arrow-circle-right fa-2x"></i></span>
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'success'" [icon]="'fa-bar-chart-o'" [path]="'/charts'" [label]="'JCS Easy Stats'" ></app-stat>
+            <div class="card text-white bg-success">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col col-xs-3">
+                            <i class="fa fa-bar-chart-o fa-5x"></i>
+                        </div>
+                        <div class="col col-xs-9 text-right">
+                            <div class="d-block huge"></div>
+                            <div class="d-block">JCS Easy Stats</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="float-left">Lien</span>
+                    <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="float-right card-inverse">
+                        <span ><i style="color: white;" class="fa fa-arrow-circle-right fa-2x"></i></span>
+                    </a>
+                </div>
+            </div>
         </div>
         <div class="col-xl-3 col-lg-6">
-            <app-stat [bgClass]="'danger'" [icon]="'fa-money'" [path]="'/pari'" [label]="'JCS Easy Bets'"></app-stat>
+            <div class="card text-white bg-danger">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col col-xs-3">
+                            <i class="fa fa-money fa-5x"></i>
+                        </div>
+                        <div class="col col-xs-9 text-right">
+                            <div class="d-block huge"></div>
+                            <div class="d-block">JCS Easy Bets</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="float-left">Lien</span>
+                    <a [routerLink]="['/pari']" [routerLinkActive]="['router-link-active']" class="float-right card-inverse">
+                        <span ><i style="color: white;" class="fa fa-arrow-circle-right fa-2x"></i></span>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

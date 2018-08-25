@@ -6,9 +6,11 @@ import { Router } from '@angular/router';
 
 
 import * as $ from 'jquery';
-import 'datatables.net';
 import 'datatables.net-bs4';
+import * as moment from 'moment';
+
 import { StorageService } from '../../_services/storage.service';
+import { noComponentFactoryError } from '@angular/core/src/linker/component_factory_resolver';
 
 @Component({
     selector: 'app-mespari',
@@ -57,17 +59,23 @@ export class MespariComponent implements OnInit {
               current.tablemesParis = $('#tableparis').DataTable( {
                 data: current.mesParis,
                 columns: [
-                    { title: "Intitulé","data": "par_question"},
+                    { title: "Intitulé du Pari","data": "par_question"},
                     { title: "Choix","data": "issue_choisi" },
                     { title: "Mise","data": "mise_pari" },
                     { title: "Cote","data": "cote_pari" },
-                    { title: "Date","data": "date_pari" },
-                    { title: "Resultat", "data": "par_solution"}
+                    { title: "Date","data": "date_pari"},
+                    { title: "Resultat", "data": "par_solution"},
                 ],
                 language: {
                   'url': './assets/dataTables_fr_FR.json',
                   'emptyTable' : "Pas de paris pour ce compte"
                  },
+                 order : [4, 'desc'],
+                 columnDefs: [
+                    {targets:4, render:function(data){
+                        return moment(data).format('DD/MM/YYYY à HH:mm:ss');
+                    }}
+                 ]
             } );      
           });
            

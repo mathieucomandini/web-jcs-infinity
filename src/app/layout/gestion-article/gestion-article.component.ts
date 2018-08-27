@@ -12,6 +12,9 @@ import { Router } from '@angular/router';
 })
 export class GestionArticleComponent implements OnInit {
   
+    htmlContent = '';
+    titreArticle = '';
+
     constructor(public router: Router, private dataService: DataService) {
 
     }
@@ -19,6 +22,10 @@ export class GestionArticleComponent implements OnInit {
     ngOnInit() {
     
         
+    }
+
+    ajoutArticle(){
+        console.log(this.htmlContent);
     }
 
 }

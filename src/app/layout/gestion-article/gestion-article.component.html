@@ -1,5 +1,12 @@
 <div [@routerTransition]>
-
-   Nik Drako
+    <br>
+    <h4>Éditeur d'article</h4>
+    <br>
+    <label>Titre :</label>
+    <input id="titre" [(ngModel)]="titreArticle"  class="form-control" type="text"/>
+    <br>
+    <app-ngx-editor [placeholder]="'Écrire ici...'" minHeight="300px" [spellcheck]="true" [(ngModel)]="htmlContent"></app-ngx-editor>
+    <br>
+    <button type="button" (click)="ajoutArticle()" class="btn btn-primary">Créer l'article</button>
 
 </div>

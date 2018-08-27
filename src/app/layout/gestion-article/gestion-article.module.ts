@@ -11,6 +11,8 @@ import { StatModule } from '../../shared';
 import { HttpClientModule } from '@angular/common/http'; 
 import { HttpModule, Http, RequestOptions  } from '@angular/http';
 
+import { NgxEditorModule } from 'ngx-editor';
+
 // HTTP
 import { AuthHttp, AuthConfig, provideAuth} from 'angular2-jwt';
 
@@ -37,7 +39,8 @@ export function authHttpFactory(http) {
         StatModule,
         FormsModule,
         HttpModule, 
-        HttpClientModule
+        HttpClientModule,
+        NgxEditorModule
     ],
     declarations: [
         GestionArticleComponent

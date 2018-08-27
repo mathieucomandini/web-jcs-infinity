@@ -9,6 +9,7 @@ import { AdminModule } from './admin/admin.module';
 import { ProfilModule } from './profil/profil.module';
 import { PariClassementModule } from './pari-classement/pari-classement.module';
 import { ArticleModule } from './article/article.module';
+import { GestionArticleModule } from './gestion-article/gestion-article.module';
 
 const routes: Routes = [
     {
@@ -30,7 +31,8 @@ const routes: Routes = [
             { path: 'admin', loadChildren: () => AdminModule, canActivate: [AdminGuard]},
             { path: 'profil', loadChildren: () => ProfilModule, canActivate: [UserGuard]},
             { path: 'pari-classement', loadChildren: () => PariClassementModule},
-            { path: 'article', loadChildren: () => ArticleModule}
+            { path: 'article', loadChildren: () => ArticleModule},
+            { path: 'gestion-article', loadChildren: () => GestionArticleModule, canActivate: [AdminGuard]}
         ]
     }
 ];

@@ -179,6 +179,27 @@ export class DataService {
         }).catch (this.handleError).toPromise();
     }
 
+    /**
+     * STATS
+     */
+    listejoueurstats(saison){
+        const json = {"saison" : saison};
+        return this.authHttp.post(this._apiURL + 'stats/listejoueur', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    listematchjoueur(pseudo, saison){
+        const json = {"pseudo" : pseudo, "saison" : saison};
+        return this.authHttp.post(this._apiURL + 'stats/listematchjoueur', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
 
     handleError(error) {
         // console.log(error.json());

@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
                     localStorage.setItem('login', data.uti_login);
                     localStorage.setItem('id', data.uti_id);
                     localStorage.setItem('admin', data.uti_admin);
+                    localStorage.setItem('saison','2');
 
                     current.dataService.getMesStatsParis(localStorage.getItem('id')).then(data => {
                         localStorage.setItem('statparis', JSON.stringify(data));

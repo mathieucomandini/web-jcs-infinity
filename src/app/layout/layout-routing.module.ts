@@ -16,14 +16,15 @@ const routes: Routes = [
         component: LayoutComponent,
         children: [
             { path: '', redirectTo: 'dashboard' },
+            { path: 'HOME', redirectTo: 'dashboard' },
             { path: 'dashboard', loadChildren: () => DashboardModule },
             { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
-            { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
+            /*{ path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
             { path: 'forms', loadChildren: './form/form.module#FormModule' },
             { path: 'bs-element', loadChildren: './bs-element/bs-element.module#BsElementModule' },
             { path: 'grid', loadChildren: './grid/grid.module#GridModule' },
             { path: 'components', loadChildren: './bs-component/bs-component.module#BsComponentModule' },
-            { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },
+            { path: 'blank-page', loadChildren: './blank-page/blank-page.module#BlankPageModule' },*/
             { path: 'pari', loadChildren: './pari/pari.module#PariModule' },
             { path: 'mesparis', loadChildren: () => MespariModule, canActivate: [UserGuard] },
             { path: 'admin', loadChildren: () => AdminModule, canActivate: [AdminGuard]},

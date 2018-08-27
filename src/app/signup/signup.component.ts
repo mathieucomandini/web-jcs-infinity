@@ -41,6 +41,7 @@ export class SignupComponent implements OnInit {
                                 localStorage.setItem('login', current.login);
                                 localStorage.setItem('id', data[0].uti_id);
                                 localStorage.setItem('admin', data[0].uti_admin);
+                                localStorage.setItem('saison','2');
                                 location.replace('/dashboard');
                             }
                         });

@@ -2,6 +2,8 @@
 
    <h3>Articles JCS</h3>
    <br>
+   <div class="trait"></div>
+   <br>
    <div *ngFor="let item of listeArticle">
         <h5>{{item.art_titre}}</h5>
         <label><i>Le {{item.art_date | date:'dd/MM/yyyy'}} par {{item.art_auteur}}</i></label>

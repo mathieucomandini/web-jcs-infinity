@@ -15,6 +15,7 @@ export class SidebarComponent {
     connexion = false;
     administration = false;
     login = ' ';
+    redacteur = false;
 
     constructor(private translate: TranslateService, public router: Router) {
         this.translate.addLangs(['en', 'fr', 'ur', 'es', 'it', 'fa', 'de']);
@@ -41,7 +42,13 @@ export class SidebarComponent {
 
         if(localStorage.getItem('admin') == '1'){
             this.administration = true;
+            this.redacteur = true;
         }
+
+        if(localStorage.getItem('redac') == '1' || localStorage.getItem('editeur') == '1'){
+            this.redacteur = true;
+        }
+
     }
 
     eventCalled() {

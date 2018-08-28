@@ -12,13 +12,16 @@ import { Router } from '@angular/router';
 })
 export class ArticleComponent implements OnInit {
   
+    listeArticle = [];
+
     constructor(public router: Router, private dataService: DataService) {
 
     }
 
     ngOnInit() {
-    
-        
+        this.dataService.getArticleActif().then(data => {
+            this.listeArticle = data;
+        });
     }
 
 }

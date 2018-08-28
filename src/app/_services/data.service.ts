@@ -200,6 +200,61 @@ export class DataService {
         }).catch (this.handleError).toPromise();
     }
 
+    /**
+     * ARTICLE
+     */
+    ajoutArticle(titre,contenu,auteur,actif){
+        const json = {"titre" : titre, "contenu" : contenu, "auteur": auteur, "actif": actif};
+        return this.authHttp.post(this._apiURL + 'article/ajoutarticle', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    getArticleActif(){
+        return this.authHttp.post(this._apiURL + 'article/getarticleactif', null)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    getAllArticle(){
+        return this.authHttp.post(this._apiURL + 'article/getallarticle', null)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    deleteArticle(id){
+        const json = {"id" : id};
+        return this.authHttp.post(this._apiURL + 'article/deletearticle', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    activerArticle(id){
+        const json = {"id" : id};
+        return this.authHttp.post(this._apiURL + 'article/activerarticle', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    modifierArticle(id, titre, contenu){
+        const json = {"id" : id, "titre" : titre, "contenu" : contenu};
+        return this.authHttp.post(this._apiURL + 'article/modifierarticle', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
 
     handleError(error) {
         // console.log(error.json());

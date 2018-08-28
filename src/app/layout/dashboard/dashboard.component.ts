@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 
+declare var Twitch: any;
+
 @Component({
     selector: 'app-dashboard',
     templateUrl: './dashboard.component.html',
@@ -10,6 +12,8 @@ import { routerTransition } from '../../router.animations';
 export class DashboardComponent implements OnInit {
     public alerts: Array<any> = [];
     public sliders: Array<any> = [];
+
+    twitch;
 
     constructor() {
         this.sliders.push(
@@ -33,7 +37,13 @@ export class DashboardComponent implements OnInit {
         );
     }
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.twitch = new Twitch.Embed("twitch-embed", {
+            width: 1200,
+            height: 480,
+            channel: "jvc_championship_series"
+        });
+    }
 
     public closeAlert(alert: any) {
         const index: number = this.alerts.indexOf(alert);

@@ -54,7 +54,7 @@
         <a [routerLink]="['/blank-page']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-file-o"></i>&nbsp;{{ 'Blank Page' | translate }}
         </a>-->
-        <a *ngIf="administration" [routerLink]="['/gestion-article']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a *ngIf="redacteur" [routerLink]="['/gestion-article']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-paper-plane"></i>&nbsp;{{ 'Gestion Articles' | translate }}
         </a>
         <a *ngIf="administration" [routerLink]="['/admin']" [routerLinkActive]="['router-link-active']" class="list-group-item">

@@ -9,6 +9,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AdminGuard } from '../_guard/adminGuard';
 import { UserGuard } from '../_guard/userGuard';
+import { RedacGuard } from '../_guard/redacGuard';
 
 @NgModule({
     imports: [
@@ -18,6 +19,6 @@ import { UserGuard } from '../_guard/userGuard';
         NgbDropdownModule.forRoot()
     ],
     declarations: [LayoutComponent, SidebarComponent, HeaderComponent],
-    providers: [AdminGuard, UserGuard]
+    providers: [AdminGuard, UserGuard, RedacGuard]
 })
 export class LayoutModule {}

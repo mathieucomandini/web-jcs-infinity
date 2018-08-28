@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LayoutComponent } from './layout.component';
 import { UserGuard } from '../_guard/userGuard';
 import { AdminGuard } from '../_guard/adminGuard';
+import { RedacGuard } from '../_guard/redacGuard';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { MespariModule } from './mesparis/mespari.module';
 import { AdminModule } from './admin/admin.module';
@@ -16,8 +17,9 @@ const routes: Routes = [
         path: '',
         component: LayoutComponent,
         children: [
-            { path: '', redirectTo: 'dashboard' },
-            { path: 'HOME', redirectTo: 'dashboard' },
+            { path: '', loadChildren: () => DashboardModule },
+            //{ path: '', redirectTo: 'dashboard'},
+            { path: 'HOME', redirectTo: '' },
             { path: 'dashboard', loadChildren: () => DashboardModule },
             { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
             /*{ path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
@@ -32,7 +34,7 @@ const routes: Routes = [
             { path: 'profil', loadChildren: () => ProfilModule, canActivate: [UserGuard]},
             { path: 'pari-classement', loadChildren: () => PariClassementModule},
             { path: 'article', loadChildren: () => ArticleModule},
-            { path: 'gestion-article', loadChildren: () => GestionArticleModule, canActivate: [AdminGuard]}
+            { path: 'gestion-article', loadChildren: () => GestionArticleModule, canActivate: [RedacGuard]}
         ]
     }
 ];

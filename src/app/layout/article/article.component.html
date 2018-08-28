@@ -1,5 +1,17 @@
 <div [@routerTransition]>
 
-   Nik Drako
+   <h3>Articles JCS</h3>
+   <br>
+   <div *ngFor="let item of listeArticle">
+        <h5>{{item.art_titre}}</h5>
+        <label><i>Le {{item.art_date | date:'dd/MM/yyyy'}} par {{item.art_auteur}}</i></label>
+        <br>
+        <br>
+        <div [innerHTML]="item.art_contenu"></div>
+        <br>
+        <div class="trait"></div>
+        <br>
+        <br>
+   </div>
 
 </div>

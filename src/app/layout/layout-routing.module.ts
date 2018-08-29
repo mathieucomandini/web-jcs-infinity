@@ -34,6 +34,7 @@ const routes: Routes = [
             { path: 'profil', loadChildren: () => ProfilModule, canActivate: [UserGuard]},
             { path: 'pari-classement', loadChildren: () => PariClassementModule},
             { path: 'article', loadChildren: () => ArticleModule},
+            { path: 'article/:id', loadChildren: () => ArticleModule},
             { path: 'gestion-article', loadChildren: () => GestionArticleModule, canActivate: [RedacGuard]}
         ]
     }

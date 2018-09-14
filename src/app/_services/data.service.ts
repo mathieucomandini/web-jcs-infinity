@@ -78,6 +78,16 @@ export class DataService {
         }).catch (this.handleError).toPromise();
     }
 
+    //ajout d'un joueur pour les stats
+    ajoutJoueur(pseudo: string, structure: string, saison: string){
+        const json = { "pseudo" : pseudo, "structure" : structure, "saison" : saison };
+        return this.authHttp.post(this._apiURL + 'jcs/ajoutjoueur', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
 
     /**
      * PARIS

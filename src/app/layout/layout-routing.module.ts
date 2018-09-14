@@ -21,7 +21,7 @@ const routes: Routes = [
             //{ path: '', redirectTo: 'dashboard'},
             { path: 'HOME', redirectTo: '' },
             { path: 'dashboard', loadChildren: () => DashboardModule },
-            { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
+            { path: 'stats', loadChildren: './charts/charts.module#ChartsModule' },
             /*{ path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
             { path: 'forms', loadChildren: './form/form.module#FormModule' },
             { path: 'bs-element', loadChildren: './bs-element/bs-element.module#BsElementModule' },
@@ -38,6 +38,7 @@ const routes: Routes = [
             { path: 'gestion-article', loadChildren: () => GestionArticleModule, canActivate: [RedacGuard]}
         ]
     }
+
 ];
 
 @NgModule({

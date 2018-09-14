@@ -6,6 +6,8 @@ import { ChartsRoutingModule } from './charts-routing.module';
 import { ChartsComponent } from './charts.component';
 import { PageHeaderModule } from '../../shared';
 
+import { PicksComponent } from './components/picks.component';
+
 import { NgbCarouselModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -37,7 +39,7 @@ export function authHttpFactory(http) {
         HttpModule, 
         HttpClientModule
     ],
-    declarations: [ChartsComponent],
+    declarations: [ChartsComponent, PicksComponent],
     providers: [DataService, AuthHttp,AppGlobals,
         {
             provide: AuthHttp,

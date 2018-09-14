@@ -6,6 +6,39 @@
         <br>
         <br>
 
+        <h6>Ajouter un joueur :</h6>
+        <br>
+        <div class="row">           
+                <div class="col-lg-4">
+                    <label>Pseudo :</label>
+                    <input id="nom" [(ngModel)]="pseudoJoueur"  class="form-control" type="text"/>   
+                </div>
+                <div class="col-lg-4">
+                    <label>Structure :</label>
+                    <select [(ngModel)]="choixEquipe" class="form-control">
+                            <option value="9">Structure 1</option>
+                            <option value="10">Structure 2</option>
+                            <option value="11">Structure 3</option>
+                            <option value="12">Structure 4</option>
+                            <option value="13">Structure 5</option>
+                            <option value="14">Structure 6</option>
+                            <option value="15">Structure 7</option>
+                            <option value="16">Structure 8</option>
+                    </select>
+                </div>
+                <div class="col-lg-4">
+                    <label>Ajouter :</label>
+                    <button type="button" (click)="ajoutJoueur()" class="form-control btn btn-primary">Ajouter le Joueur</button>
+                </div>
+                <!--<div class="col-lg-4">
+                    <label>Saison :</label>
+                    <select [(ngModel)]="choixOption" (ngModelChange)="selectionChange($event)" class="form-control">
+                            <option value="3">Saison 3</option>
+                    </select>
+                </div>-->      
+        </div>
+        <br>
+
         <div class="row">
                 <div class="col-lg-6">
                         <h6>Ajouter un pari :</h6>

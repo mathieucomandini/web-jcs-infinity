@@ -29,6 +29,10 @@ export class AdminComponent implements OnInit {
     
     choixOption = '';
 
+    choixEquipe = '';
+    pseudoJoueur = '';
+    saison = '3';
+
     selectionPari = false;
 
     constructor(public router: Router, private dataService: DataService) {
@@ -100,5 +104,27 @@ export class AdminComponent implements OnInit {
             this.listeParisNonResolu = data;
         });
     }
-  
+
+    ajoutJoueur(){
+        //console.log(this.pseudoJoueur);
+        //console.log(this.choixEquipe);
+        //console.log(this.saison);
+
+        if(this.pseudoJoueur != '' && this.choixEquipe != ''){
+        this.dataService.ajoutJoueur(this.pseudoJoueur,this.choixEquipe,this.saison).then(data => {
+            //let's go
+            if(data.sucess == 'oui'){
+                this.pseudoJoueur = '';
+                this.choixEquipe = '';
+            }
+            else
+            {
+                alert('Erreur ajout en base');
+            }
+        });
+        }
+        else{
+            alert('Pas de paramètre');
+        }
+    }  
 }

@@ -12,9 +12,13 @@
        
             <div>
                 <label>Liste des parieurs : </label>
-                <!--<div class="row">
+                <br>
+                <br>
+                <input type="text" id="myInput" class="form-control" [(ngModel)]="recherche" (ngModelChange)="findTable('myInput','maTable')" placeholder="Chercher le pseudo..">
+                <br>
+                <div class="row">
                     <div class="col-lg-12">
-                            <table class="table">
+                            <table class="table" id="maTable">
                                     <thead class="thead-inverse">
                                     <tr>
                                         <th>Pseudo</th>
@@ -23,7 +27,7 @@
                                         <th>Échecs</th>
                                         <th>Renflouement</th>
                                         <th>JC$</th>
-                                        <th>JC$ pondéré</th>
+                                        <th>JC$ moins renflouement</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -39,10 +43,10 @@
                                     </tbody>
                            </table>
                     </div>
-                </div>-->
+                </div>
 
                 <br>
-                <table id="tableparieur" class="display" width="100%"></table>
+                <!--<table id="tableparieur" class="display" width="100%"></table>-->
 
             </div>
 

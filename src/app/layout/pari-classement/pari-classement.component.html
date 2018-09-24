@@ -21,6 +21,7 @@
                             <table class="table" id="maTable">
                                     <thead class="thead-inverse">
                                     <tr>
+                                        <th>Place</th>
                                         <th>Pseudo</th>
                                         <th>Nombre de paris</th>
                                         <th>Réussis</th>
@@ -31,14 +32,15 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <tr *ngFor="let item of parieur">
+                                    <tr *ngFor="let item of parieur; let i = index">
+                                        <td>{{i+1}}</td>
                                         <td>{{item.uti_login}}</td>
                                         <td>{{item.nb_pari}}</td>
                                         <td>{{item.nb_win}}</td>
                                         <td>{{item.nb_lose}}</td>
                                         <td>{{item.nb_refund}}</td>
-                                        <td>{{item.argent_actuel}}</td>
-                                        <td>{{item.argent_actuel-item.argent_refund}}</td>
+                                        <td>{{item.argent_actuel+item.argent_encours}}</td>
+                                        <td>{{item.argent_actuel-item.argent_refund+item.argent_encours}}</td>
                                     </tr>
                                     </tbody>
                            </table>

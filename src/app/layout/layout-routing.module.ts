@@ -19,7 +19,8 @@ const routes: Routes = [
         children: [
             { path: '', loadChildren: () => DashboardModule },
             //{ path: '', redirectTo: 'dashboard'},
-            { path: 'HOME', redirectTo: '' },
+            { path: 'HOME', redirectTo: '' },  
+            { path: 'index.php', redirectTo: '' },
             { path: 'dashboard', loadChildren: () => DashboardModule },
             { path: 'stats', loadChildren: './charts/charts.module#ChartsModule' },
             /*{ path: 'tables', loadChildren: './tables/tables.module#TablesModule' },

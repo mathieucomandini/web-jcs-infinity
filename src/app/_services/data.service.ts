@@ -265,6 +265,33 @@ export class DataService {
         }).catch (this.handleError).toPromise();
     }
 
+    getAllCom(id){
+        const json = {"id" : id};
+        return this.authHttp.post(this._apiURL + 'article/getallcom', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    ajoutCom(id,contenu,auteur){
+        const json = {"id" : id, "contenu" : contenu, "auteur": auteur};
+        return this.authHttp.post(this._apiURL + 'article/ajoutcommentaire', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    deleteCom(id){
+        const json = {"id" : id};
+        return this.authHttp.post(this._apiURL + 'article/deletecommentaire', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
 
     handleError(error) {
         // console.log(error.json());

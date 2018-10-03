@@ -4,6 +4,7 @@ import { NgModel } from '@angular/forms';
 import { DataService } from '../../_services/data.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { StorageService } from '../../_services/storage.service';
 
 @Component({
     selector: 'app-article',
@@ -20,6 +21,10 @@ export class ArticleComponent implements OnInit {
     currentArticle;
     recherche = '';
 
+    listeComm = [];
+    contenucom = '';
+    admin = localStorage.getItem('admin');
+
     constructor(public router: Router, private dataService: DataService, private route: ActivatedRoute) {
 
     }
@@ -29,8 +34,12 @@ export class ArticleComponent implements OnInit {
             this.listeArticle = data;
             this.articleId = this.route.snapshot.paramMap.get('id');
             if(this.articleId != null){
-                this.onArticle = true;
+                //this.onArticle = true;
                 this.currentArticle = this.listeArticle.find(x => x.art_id == this.articleId);
+                this.dataService.getAllCom(this.articleId).then(data => {
+                    this.listeComm = data;
+                    this.onArticle = true;
+                })
             }
         });
 
@@ -62,6 +71,26 @@ export class ArticleComponent implements OnInit {
                 }
             }
         }
+    }
+
+    ajouterCommentaire(){
+        var current = this;
+        if(this.contenucom != ''){
+            this.dataService.ajoutCom(this.articleId, this.contenucom, localStorage.getItem('login')).then(data => {
+                current.dataService.getAllCom(current.articleId).then(data => {
+                    current.listeComm = data;
+                });
+            });
+        }
+    }
+
+    deleteCom(id){
+        var current = this;
+        this.dataService.deleteCom(id).then(data => {
+            current.dataService.getAllCom(current.articleId).then(data => {
+                current.listeComm = data;
+            });
+        });
     }
 
 }

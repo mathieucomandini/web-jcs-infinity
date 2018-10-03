@@ -46,9 +46,28 @@
         <br>
         <div [innerHTML]="currentArticle.art_contenu"></div>
         <br>
-        <br>
-        <br>
         <a [routerLink]="['/article']" [routerLinkActive]="['router-link-active']"><button type="button" class="btn btn-primary">Retour à la liste des articles</button></a>
+        <br>
+        <br>
+        <h6>Ajouter un commentaire :</h6>
+        <br>
+        <textarea class="form-control" [(ngModel)]='contenucom' maxlength="500"></textarea>
+        <br>
+        <button type="button" (click)="ajouterCommentaire()" class="btn btn-primary">Ajouter</button>
+        <br>
+        <br>
+        <h6>Commentaires :</h6>
+        <br>
+        <div *ngFor="let item of listeComm">
+            <div>
+                <label><i>Le {{item.date_com | date:'dd/MM/yyyy'}} par {{item.nom_auteur}}</i></label>
+                <div>{{item.contenu_com}}</div>
+            </div>
+            <br>
+            <div *ngIf="admin == '1'">
+                    <button type="button" (click)="deleteCom(item.id_com)" class="btn btn-danger">Supprimer</button>
+            </div>
+        </div>
    </div>
    </div>
 

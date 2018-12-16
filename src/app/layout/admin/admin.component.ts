@@ -31,7 +31,7 @@ export class AdminComponent implements OnInit {
 
     choixEquipe = '';
     pseudoJoueur = '';
-    saison = '3';
+    saison = '4';
 
     selectionPari = false;
 

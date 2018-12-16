@@ -39,8 +39,8 @@ export class DashboardComponent implements OnInit {
 
     ngOnInit() {
         this.twitch = new Twitch.Embed("twitch-embed", {
-            width: 1200,
-            height: 480,
+            width: '90%',
+            height: 600,
             channel: "jvc_championship_series"
         });
     }

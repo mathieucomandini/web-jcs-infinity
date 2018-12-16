@@ -29,13 +29,15 @@ export class SignupComponent implements OnInit {
         //localStorage.setItem('isLoggedin', 'true');
         const current = this;
 
+        var datelogin = new Date();
+
         if(this.login != '' && this.mdp != '' && this.cmdp != ''){
             
             if(this.mdp == this.cmdp){
 
                 this.dataService.checkLogin(this.login).then(data => {
                     if(data.login){
-                        this.dataService.inscription(current.login, current.mdp).then(data => {
+                        this.dataService.inscription(current.login, current.mdp, datelogin).then(data => {
                             if(data != null)
                             {
                                 localStorage.setItem('login', current.login);
@@ -44,6 +46,7 @@ export class SignupComponent implements OnInit {
                                 localStorage.setItem('saison','2');
                                 localStorage.setItem('redac', data[0].uti_redacteur);
                                 localStorage.setItem('editeur', data[0].uti_editeur);
+                                localStorage.setItem('datelogin', datelogin.toDateString());
                                 location.replace('/dashboard');
                             }
                         });

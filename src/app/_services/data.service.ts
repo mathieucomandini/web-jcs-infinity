@@ -15,6 +15,9 @@ export class DataService {
 
     private _apiURL: string;
 
+    codeUser = '084328C53A9DE563B83B23B6F500521FF442AF7CFE60F104574C2C8CCE22CF2A';
+    codeAdmin = '35235D5998616ECD5B68F8CCAB8CF42418F1BA9CA9C9927EA27F43965E3E27F1';
+
     constructor(
         public authHttp: AuthHttp,
         private _global: AppGlobals
@@ -22,8 +25,8 @@ export class DataService {
         this._apiURL = this._global.apiURL;
     }
 
-    connexion(login: string, passe: string) {
-        const json = {"login": login, "passe": passe};
+    connexion(login: string, passe: string, datelogin: Date) {
+        const json = {"login": login, "passe": passe, "datelogin": datelogin};
         return this.authHttp.post(this._apiURL + 'user/connexion', json)
             .map(res => res.json())
             .map(data => {
@@ -31,8 +34,8 @@ export class DataService {
             }).catch (this.handleError).toPromise();
     }
 
-    inscription(login: string, passe: string) {
-        const json = {"login": login, "passe": passe};
+    inscription(login: string, passe: string, datelogin: Date) {
+        const json = {"login": login, "passe": passe, "datelogin": datelogin};
         return this.authHttp.post(this._apiURL + 'user/inscription', json)
             .map(res => res.json())
             .map(data => {
@@ -80,7 +83,7 @@ export class DataService {
 
     //ajout d'un joueur pour les stats
     ajoutJoueur(pseudo: string, structure: string, saison: string){
-        const json = { "pseudo" : pseudo, "structure" : structure, "saison" : saison };
+        const json = { "key": this.codeAdmin, "pseudo" : pseudo, "structure" : structure, "saison" : saison };
         return this.authHttp.post(this._apiURL + 'jcs/ajoutjoueur', json)
         .map(res => res.json())
         .map(data => {
@@ -146,7 +149,7 @@ export class DataService {
     }
 
     ajoutPari(question, cote1, cote2, choix1, choix2, date){
-        const json = {"question":question,"cote1":cote1,"issue1":choix1,"cote2":cote2,"issue2":choix2,"date":date};
+        const json = {"key": this.codeAdmin,"question":question,"cote1":cote1,"issue1":choix1,"cote2":cote2,"issue2":choix2,"date":date};
         return this.authHttp.post(this._apiURL + 'pari/ajoutpari', json)
         .map(res => res.json())
         .map(data => {
@@ -155,7 +158,7 @@ export class DataService {
     }
 
     resoudrePari(id, solution){
-        const json = {"id" : id, "solution" : solution };
+        const json = {"key": this.codeAdmin,"id" : id, "solution" : solution };
         return this.authHttp.post(this._apiURL + 'pari/resoudrepari', json)
         .map(res => res.json())
         .map(data => {
@@ -164,7 +167,7 @@ export class DataService {
     }
 
     supprimerPari(id){
-        const json = {"id" : id};
+        const json = {"key": this.codeAdmin,"id" : id};
         return this.authHttp.post(this._apiURL + 'pari/supprimerpari', json)
         .map(res => res.json())
         .map(data => {
@@ -214,7 +217,7 @@ export class DataService {
      * ARTICLE
      */
     ajoutArticle(titre,contenu,auteur,actif){
-        const json = {"titre" : titre, "contenu" : contenu, "auteur": auteur, "actif": actif};
+        const json = {"key": this.codeAdmin,"titre" : titre, "contenu" : contenu, "auteur": auteur, "actif": actif};
         return this.authHttp.post(this._apiURL + 'article/ajoutarticle', json)
         .map(res => res.json())
         .map(data => {
@@ -239,7 +242,7 @@ export class DataService {
     }
 
     deleteArticle(id){
-        const json = {"id" : id};
+        const json = {"key": this.codeAdmin,"id" : id};
         return this.authHttp.post(this._apiURL + 'article/deletearticle', json)
         .map(res => res.json())
         .map(data => {
@@ -248,7 +251,7 @@ export class DataService {
     }
 
     activerArticle(id){
-        const json = {"id" : id};
+        const json = {"key": this.codeAdmin,"id" : id};
         return this.authHttp.post(this._apiURL + 'article/activerarticle', json)
         .map(res => res.json())
         .map(data => {
@@ -257,7 +260,7 @@ export class DataService {
     }
 
     modifierArticle(id, titre, contenu){
-        const json = {"id" : id, "titre" : titre, "contenu" : contenu};
+        const json = {"key": this.codeAdmin,"id" : id, "titre" : titre, "contenu" : contenu};
         return this.authHttp.post(this._apiURL + 'article/modifierarticle', json)
         .map(res => res.json())
         .map(data => {
@@ -284,7 +287,7 @@ export class DataService {
     }
 
     deleteCom(id){
-        const json = {"id" : id};
+        const json = {"key": this.codeAdmin,"id" : id};
         return this.authHttp.post(this._apiURL + 'article/deletecommentaire', json)
         .map(res => res.json())
         .map(data => {

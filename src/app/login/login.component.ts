@@ -28,17 +28,20 @@ export class LoginComponent implements OnInit {
 
         const current = this;
 
+        var datelogin = new Date();
+    
         if (this.login !== '' && this.mdp !== ''){
-            this.dataService.connexion(this.login, this.mdp).then(data => {         
+            this.dataService.connexion(this.login, this.mdp, datelogin).then(data => {         
                  
                 if(data.uti_login != null){
 
                     localStorage.setItem('login', data.uti_login);
                     localStorage.setItem('id', data.uti_id);
                     localStorage.setItem('admin', data.uti_admin);
-                    localStorage.setItem('saison','2');
+                    localStorage.setItem('saison','3');
                     localStorage.setItem('redac', data.uti_redacteur);
                     localStorage.setItem('editeur', data.uti_editeur);
+                    localStorage.setItem('datelogin', datelogin.toDateString());
 
                     current.dataService.getMesStatsParis(localStorage.getItem('id')).then(data => {
                         localStorage.setItem('statparis', JSON.stringify(data));

@@ -73,9 +73,10 @@ export class MespariComponent implements OnInit {
                  order : [4, 'desc'],
                  columnDefs: [
                     {targets:4, render:function(data){              
-                        return moment(data).format('DD/MM/YYYY à HH:mm:ss');
+                        return moment(data).format('YYYY/MM/DD à HH:mm:ss');
                     }}
-                 ]
+                 ],
+                 responsive : true
             } );      
           });
            

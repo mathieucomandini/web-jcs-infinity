@@ -72,13 +72,13 @@ export class PariComponent implements OnInit {
         //refaire une vérification de date !!!!!
 
         //if(this.mise > 0 && this.mise <= this.credit && this.choix != '')
-        var pariMax = 100;
+        /*var pariMax = 100;
 
         if(this.credit < pariMax){
             pariMax = this.credit;
-        }
+        }*/
 
-        if(this.mise > 0 && this.mise <= pariMax && this.choix != '')
+        if(this.mise > 0 && this.choix != '' /*&& this.mise <= pariMax*/)
         {
             this.credit = this.credit - this.mise;
 
@@ -128,11 +128,11 @@ export class PariComponent implements OnInit {
 
         this.cote = 0;
 
-        var pariMax = 100;
+        /*var pariMax = 100;
 
         if(this.credit < pariMax){
             pariMax = this.credit;
-        }
+        }*/
 
         if(this.choixOption != 0){
 
@@ -145,7 +145,7 @@ export class PariComponent implements OnInit {
             this.choix = this.issue2;
         }
 
-        if(this.mise != null && this.mise > 0 && this.mise <= pariMax){
+        if(this.mise != null && this.mise > 0 /*&& this.mise <= pariMax*/){
             this.gains = ((this.mise * this.cote) - this.mise);
             this.gains = parseFloat(this.gains.toFixed(2));
         }

@@ -9,6 +9,7 @@
     <select [(ngModel)]="saison" (ngModelChange)="selectionChange($event)" class="form-control">
             <option value="2">Saison 2</option>
             <option value="3">Saison 3</option>
+            <option value="4">Saison 4</option>
     </select>
     </div>
     <div *ngIf="!dataIsload" class="col-lg-2">
@@ -20,9 +21,7 @@
     <br>
     <label>La flemme étant grande go <a target="blank" href="http://old-stats.jcs-infinity.fr">Stats S3</a> en attendant</label>
     <br>
-    <label>Challonge L1 : <a target="blank" href="https://challonge.com/fr/jcss3l1">Clique ICI</a></label>
-    <br>
-    <label>Challonge L2 : <a target="blank" href="https://challonge.com/fr/jcss3acad">Clique ICI</a></label>
+    <label>La flemme sera t-elle moins grande pour la S4 ?</label>
     
     <div *ngIf="!onPageJoueur && !onPageTeam">
     <br>

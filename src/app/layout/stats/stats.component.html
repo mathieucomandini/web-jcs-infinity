@@ -1,0 +1,108 @@
+<div [@routerTransition]>
+
+    <img class="img-fluid mx-auto d-block" src="./../../../assets/images/easystatbanniere.png" width="100%">
+    <!--<h2>JCS Easy Stats</h2><h5>Qui pour m'apprendre le css ?</h5>-->
+    <br>
+    <h5>Choisir la saison :</h5>
+    <div class="row">
+    <div class="col-lg-2">
+    <select [(ngModel)]="saison" (ngModelChange)="selectionChange($event)" class="form-control">
+            <option value="2">Saison 2</option>
+            <option value="3">Saison 3</option>
+            <option value="4">Saison 4</option>
+    </select>
+    </div>
+    <div *ngIf="!dataIsload" class="col-lg-2">
+            <img src="./../../../assets/images/ajax-loader.gif">
+    </div>
+    </div>  
+    <br>
+    <label>Statistiques S2 ancien site : <a target="blank" href="http://jcs-easy-stats.alwaysdata.net">Clique ICI</a></label>
+    <br>
+    <label>La flemme étant grande go <a target="blank" href="http://old-stats.jcs-infinity.fr">Stats S3</a> en attendant</label>
+    <br>
+    <label>La flemme sera t-elle moins grande pour la S4 ?</label>
+    
+    <div *ngIf="!onPageJoueur && !onPageTeam">
+    <br>
+    <h5>Statistiques des joueurs globales :</h5>
+    <label><i>Clique sur une ligne pour accèder à la page du joueur</i></label>
+    <br>
+    <table id="tablejoueurs" class="display" width="100%"></table>
+    </div>
+
+
+    <div *ngIf="onPageJoueur && !onPageTeam">
+        <div class="row">
+            <div class="col-lg-11">
+              <h2>{{currentPlayer}}</h2>
+            </div>
+            <div class="col-lg-1">
+                <button type="button" (click)="retourMain()" class="btn btn-secondary">Retour</button>
+            </div>
+        <br>
+        <br>
+         </div>
+        <label>Partie(s) : </label>
+                <div class="row">
+                    <div class="col-lg-12">
+                            <table class="table">
+                                    <thead class="thead-inverse">
+                                    <tr>
+                                        <th>Ligue</th>
+                                        <th>Champion</th>
+                                        <th>KDA</th>
+                                        <th>Kills</th>
+                                        <th>Deaths</th>
+                                        <th>Assists</th>
+                                        <th>DPM</th>
+                                        <th>Damages</th>
+                                        <th>GPM</th>
+                                        <th>Golds</th>
+                                        <th>FPM</th>
+                                        <th>Farm</th>
+                                        <th>VPM</th>
+                                        <th>Vision</th>
+                                        <th>D/G</th>                   
+                                        <th>Durée</th>
+                                        <th>Poste</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr *ngFor="let item of gamesJoueur">
+                                        <td>{{item.item.ma_ligue}}</td>
+                                        <td>{{item.item.champion}}</td>
+                                        <td>{{item.kda}}</td>
+                                        <td>{{item.item.kills}}</td>
+                                        <td>{{item.item.deaths}}</td>
+                                        <td>{{item.item.assists}}</td>
+                                        <td>{{item.dpm}}</td>
+                                        <td>{{item.item.degats}}</td>
+                                        <td>{{item.gpm}}</td>
+                                        <td>{{item.item.golds}}</td>
+                                        <td>{{item.fpm}}</td>
+                                        <td>{{item.item.farm}}</td>
+                                        <td>{{item.vpm}}</td>
+                                        <td>{{item.item.visions}}</td>
+                                        <td>{{item.dg}}</td>
+                                        <td>{{item.mn}}</td>
+                                        <th>{{item.item.poste}}</th>
+                                    </tr>
+                                    </tbody>
+                           </table>
+                    </div>
+                </div>
+    </div>
+
+   <!-- <div class="btn-group" style="width:100%">
+          <button (click)="navigation(1)"  style="width:25%">Pick</button>
+          <button (click)="navigation(1)"  style="width:25%">Pick</button>
+          <button (click)="navigation(1)"  style="width:25%">Pick</button>
+          <button (click)="navigation(1)"  style="width:25%">Pick</button>
+    </div>
+
+    <div *ngIf="onPick">
+        <app-pick></app-pick>
+    </div>-->
+
+</div>

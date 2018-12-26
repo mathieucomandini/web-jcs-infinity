@@ -11,6 +11,7 @@ import { ProfilModule } from './profil/profil.module';
 import { PariClassementModule } from './pari-classement/pari-classement.module';
 import { ArticleModule } from './article/article.module';
 import { GestionArticleModule } from './gestion-article/gestion-article.module';
+import { StatsModule } from './stats/stats.module';
 
 const routes: Routes = [
     {
@@ -22,7 +23,8 @@ const routes: Routes = [
             { path: 'HOME', redirectTo: '' },  
             { path: 'index.php', redirectTo: '' },
             { path: 'dashboard', loadChildren: () => DashboardModule },
-            { path: 'stats', loadChildren: './charts/charts.module#ChartsModule' },
+            { path: 'stats', loadChildren: './charts/charts.module#ChartsModule' },       
+            { path: 'jcs-easy-stats', loadChildren: () => StatsModule },
             /*{ path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
             { path: 'forms', loadChildren: './form/form.module#FormModule' },
             { path: 'bs-element', loadChildren: './bs-element/bs-element.module#BsElementModule' },
@@ -39,7 +41,6 @@ const routes: Routes = [
             { path: 'gestion-article', loadChildren: () => GestionArticleModule, canActivate: [RedacGuard]}
         ]
     }
-
 ];
 
 @NgModule({

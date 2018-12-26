@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { StatsModule as Ng2Charts } from 'ng2-charts';
+import { ChartsModule as Ng2Charts } from 'ng2-charts';
 
 import { StatsRoutingModule } from './stats-routing.module';
 import { StatsComponent } from './stats.component';
-import { PageHeaderModule } from '../../shared';
+import { TableauJoueursComponent } from './components/tableau-joueurs.component';
+import { EquipesComponent } from './components/equipes.component';
 
-import { PicksComponent } from './components/picks.component';
+import { PageHeaderModule } from '../../shared';
 
 import { NgbCarouselModule, NgbAlertModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -39,7 +40,7 @@ export function authHttpFactory(http) {
         HttpModule, 
         HttpClientModule
     ],
-    declarations: [StatsComponent, PicksComponent],
+    declarations: [StatsComponent, TableauJoueursComponent, EquipesComponent],
     providers: [DataService, AuthHttp,AppGlobals,
         {
             provide: AuthHttp,

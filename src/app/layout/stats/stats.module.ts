@@ -6,6 +6,7 @@ import { StatsRoutingModule } from './stats-routing.module';
 import { StatsComponent } from './stats.component';
 import { TableauJoueursComponent } from './components/tableau-joueurs.component';
 import { EquipesComponent } from './components/equipes.component';
+import { PresenceComponent } from './components/presence.component'
 
 import { PageHeaderModule } from '../../shared';
 
@@ -40,7 +41,7 @@ export function authHttpFactory(http) {
         HttpModule, 
         HttpClientModule
     ],
-    declarations: [StatsComponent, TableauJoueursComponent, EquipesComponent],
+    declarations: [StatsComponent, TableauJoueursComponent, EquipesComponent, PresenceComponent],
     providers: [DataService, AuthHttp,AppGlobals,
         {
             provide: AuthHttp,

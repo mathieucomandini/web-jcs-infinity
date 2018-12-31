@@ -105,8 +105,7 @@ export class AdminComponent implements OnInit {
         });
     }
 
-    ajoutJoueur()
-    {
+    ajoutJoueur(){
         //console.log(this.pseudoJoueur);
         //console.log(this.choixEquipe);
         //console.log(this.saison);
@@ -127,5 +126,5 @@ export class AdminComponent implements OnInit {
         else{
             alert('Pas de paramètre');
         }
-    }
+    }  
 }

@@ -213,6 +213,15 @@ export class DataService {
         }).catch (this.handleError).toPromise();
     }
 
+    listepresence(saison){
+        const json = {"saison" : saison};
+        return this.authHttp.post(this._apiURL + 'stats/listepresence', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
     /**
      * ARTICLE
      */

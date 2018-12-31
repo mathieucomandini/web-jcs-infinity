@@ -34,7 +34,7 @@ export class ArticleComponent implements OnInit {
             this.listeArticle = data;
             this.articleId = this.route.snapshot.paramMap.get('id');
             if(this.articleId != null){
-                // this.onArticle = true;
+                //this.onArticle = true;
                 this.currentArticle = this.listeArticle.find(x => x.art_id == this.articleId);
                 this.dataService.getAllCom(this.articleId).then(data => {
                     this.listeComm = data;
@@ -50,7 +50,7 @@ export class ArticleComponent implements OnInit {
     }
 
     consulter(id){
-        this.router.navigate(['/pari/' + id]);
+        this.router.navigate(['/pari/'+id]);
     }
 
     findTable(inp,t){
@@ -59,7 +59,7 @@ export class ArticleComponent implements OnInit {
         filter = input.value.toUpperCase();
         table = document.getElementById(t);
         tr = table.getElementsByTagName("tr");
-
+    
         // Loop through all table rows, and hide those who don't match the search query
         for (i = 0; i < tr.length; i++) {
             td = tr[i].getElementsByTagName("td")[0];

@@ -41,6 +41,9 @@
         <div *ngIf="route == '2'">
             <app-equipes [saison]="saison"></app-equipes>
         </div>  
+        <div *ngIf="route == '3'">
+            <app-presence [saison]="saison" (dataLoad)="dataLoad($event)"></app-presence>
+        </div>  
     </div>
 
 </div>

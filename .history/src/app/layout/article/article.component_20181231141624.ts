@@ -50,7 +50,7 @@ export class ArticleComponent implements OnInit {
     }
 
     consulter(id){
-        this.router.navigate(['/pari/' + id]);
+        this.router.navigate(['/pari/'+id]);
     }
 
     findTable(inp,t){
@@ -59,7 +59,7 @@ export class ArticleComponent implements OnInit {
         filter = input.value.toUpperCase();
         table = document.getElementById(t);
         tr = table.getElementsByTagName("tr");
-
+        
         // Loop through all table rows, and hide those who don't match the search query
         for (i = 0; i < tr.length; i++) {
             td = tr[i].getElementsByTagName("td")[0];

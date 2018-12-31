@@ -6,8 +6,6 @@ import { Router } from '@angular/router';
 
 import * as $ from 'jquery';
 import 'datatables.net-bs4';
-import * as moment from 'moment';
-import { NONAME } from 'dns';
 
 @Component({
     selector: 'app-tableau-joueurs',

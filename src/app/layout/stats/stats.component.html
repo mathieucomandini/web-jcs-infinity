@@ -7,9 +7,11 @@
     <div class="row">
     <div class="col-lg-2">
     <select [(ngModel)]="saison" (ngModelChange)="selectionChange($event)" class="form-control">
+            <option value="1">Saison 1</option>
             <option value="2">Saison 2</option>
             <option value="3">Saison 3</option>
             <option value="4">Saison 4</option>
+            <option value="5">Saison 5</option>
     </select>
     </div>
     <div *ngIf="!dataIsload" class="col-lg-2">

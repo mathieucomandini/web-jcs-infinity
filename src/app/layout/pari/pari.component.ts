@@ -78,7 +78,7 @@ export class PariComponent implements OnInit {
             pariMax = this.credit;
         }*/
 
-        if(this.mise > 0 && this.choix != '' /*&& this.mise <= pariMax*/)
+        if(this.mise > 0 && this.mise <= this.credit && this.choix != '' /*&& this.mise <= pariMax*/)
         {
             this.credit = this.credit - this.mise;
 
@@ -120,7 +120,7 @@ export class PariComponent implements OnInit {
         }
         else
         {
-            alert("Avec le décret n°1 de Drako sur la législation des paris aux JCS, les mises sont maintenant comprises entre 0.01 et 100 pour ne pas faire rager ceux qui ne croient pas en le saint ALL IN.\n\nCordialement Forandos");
+            alert("Mise incorrecte");
         }
     }
 

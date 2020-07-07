@@ -1,3 +1,3 @@
 JCS Infinity
 
-Copyright 2018
+Copyright 2020

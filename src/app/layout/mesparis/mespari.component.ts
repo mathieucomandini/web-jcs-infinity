@@ -90,6 +90,7 @@ export class MespariComponent implements OnInit {
         this.dataService.getMesStatsParis(localStorage.getItem("id")).then(data => {   
             localStorage.setItem('statparis', JSON.stringify(data));
             this.credit = data[0].argent_actuel;
+            this.credit = 3000000;
             this.nbrefund = data[0].nb_refund;
 
     
@@ -125,6 +126,8 @@ export class MespariComponent implements OnInit {
             if(current.creditEnJeu + current.credit <= 50){
                 current.peutRenflouer = true;
             }
+            this.credit = 3000000;  
+
         });
     }
 

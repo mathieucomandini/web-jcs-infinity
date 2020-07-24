@@ -304,6 +304,136 @@ export class DataService {
         }).catch (this.handleError).toPromise();
     }
 
+    //Fonction JCS Fantasy
+
+    allCards(saison, ligue){
+        const json = {"saison": saison,"ligue" : ligue};
+        return this.authHttp.post(this._apiURL + 'fantasy/allcards', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    addCard(saison, ligue, nom_carte, rarete_carte, effet_carte, nature_carte, prix){
+        const json = {"saison": saison,"ligue" : ligue,"nom_carte" : nom_carte,"rarete_carte" : rarete_carte,"effet_carte" : effet_carte,"nature_carte" : nature_carte,"prix" : prix};
+        return this.authHttp.post(this._apiURL + 'fantasy/addcard', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    deleteCard(saison, ligue, nom_carte){
+        const json = {"saison": saison,"ligue" : ligue,"nom_carte" : nom_carte};
+        return this.authHttp.post(this._apiURL + 'fantasy/deletecard', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    modifyCard(id, effet_carte, prix, score){
+        const json = {"id": id,"effet_carte" : effet_carte,"prix" : prix,"score" : score};
+        return this.authHttp.post(this._apiURL + 'fantasy/modifycard', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    cardsForaname(nom_carte, saison, ligue){
+        const json = {"nom_carte": nom_carte,"saison" : saison,"ligue" : ligue};
+        return this.authHttp.post(this._apiURL + 'fantasy/cardsforaname', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    addRoster(saison, ligue, id_compte, id_carte, id_session, item_1_id, item_2_id, item_3_id, score){
+        const json = {"saison": saison,"ligue" : ligue,"id_compte" : id_compte,"id_carte" : id_carte, "id_session" : id_session,"item_1_id" : item_1_id,"item_2_id" : item_2_id,"item_3_id" : item_3_id,"score" : score};
+        return this.authHttp.post(this._apiURL + 'fantasy/addroster', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    rosterJoueur(id_session, saison, ligue, id_ligue){
+        const json = {"id_session": id_session,"saison" : saison,"ligue" : ligue,"id_ligue" : id_ligue};
+        return this.authHttp.post(this._apiURL + 'fantasy/rosterjoueur', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    allRosterJoueur(saison, ligue, id_compte){
+        const json = {"saison" : saison,"ligue" : ligue,"id_compte" : id_compte};
+        return this.authHttp.post(this._apiURL + 'fantasy/allrosterjoueur', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    deleteCardRoster(id_roster){
+        const json = {"id_roster": id_roster};
+        return this.authHttp.post(this._apiURL + 'fantasy/deletecardroster', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    addSession(semaine, saison, ligue, date_session, date_fin){
+        const json = {"semaine": semaine,"saison" : saison,"ligue" : ligue,"date_session" : date_session,"date_fin" : date_fin};
+        return this.authHttp.post(this._apiURL + 'fantasy/addsession', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    addScore(id_compte, id_session, score_valeur){
+        const json = {"id_compte": id_compte,"id_session" : id_session,"score_valeur" : score_valeur};
+        return this.authHttp.post(this._apiURL + 'fantasy/addscore', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    updateScore(id, score_valeur){
+        const json = {"id": id,"score_valeur" : score_valeur};
+        return this.authHttp.post(this._apiURL + 'fantasy/updatescore', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    addCardPlayer(id_compte, id_carte, ligue, saison){
+        const json = {"id_compte": id_compte,"id_carte" : id_carte,"ligue" : ligue,"saison" : saison};
+        return this.authHttp.post(this._apiURL + 'fantasy/addcardplayer', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    deckJoueur(id_compte, ligue, saison){
+        const json = {"id_compte": id_compte,"ligue" : ligue,"saison" : saison};
+        return this.authHttp.post(this._apiURL + 'fantasy/deckjoueur', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    
+
 
     handleError(error) {
         // console.log(error.json());

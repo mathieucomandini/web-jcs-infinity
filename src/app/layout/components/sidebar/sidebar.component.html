@@ -9,17 +9,59 @@
         <a [routerLink]="['/jcs-easy-stats']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;{{ 'JCS Easy Stats' | translate }}
         </a>
-        <a [routerLink]="['/pari']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('fantasy')">
+                <span><i class="fa fa-fw fa-fire"></i>&nbsp; {{ 'JCS Fantasy' | translate }}</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'fantasy'">
+                <ul class="submenu">
+                    <li>
+                        <a [routerLink]="['/roster']" [routerLinkActive]="['router-link-active']"><span><i class="fa fa-fw fa-university"></i>&nbsp;{{ 'Mon Roster' | translate }}</span></a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/cartes']" [routerLinkActive]="['router-link-active']"><span><i class="fa fa-fw fa-book"></i>&nbsp;{{ 'Mes Cartes' | translate }}</span></a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/profil-fantasy']" [routerLinkActive]="['router-link-active']"><span><i class="fa fa-fw fa-user"></i>&nbsp;{{ 'Profil' | translate }}</span></a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/classement']" [routerLinkActive]="['router-link-active']"><span><i class="fa fa-fw fa-list-ol"></i>&nbsp;{{ 'Classement' | translate }}</span></a>
+                    </li>
+                </ul>
+            </li>
+        </div>
+
+        <div class="nested-menu">
+            <a class="list-group-item" (click)="addExpandClass('pages')">
+                <span><i class="fa fa-fw fa-money"></i>&nbsp; {{ 'JCS Easy Bets' | translate }}</span>
+            </a>
+            <li class="nested" [class.expand]="showMenu === 'pages'">
+                <ul class="submenu">
+                    <li>
+                        <a [routerLink]="['/pari']" [routerLinkActive]="['router-link-active']"><span><i class="fa fa-fw fa-money"></i>&nbsp;{{ 'Parier' | translate }}</span></a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/pari-classement']" [routerLinkActive]="['router-link-active']"><span><i class="fa fa-fw fa-list-ol"></i>&nbsp;{{ 'Classement' | translate }}</span></a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['/mesparis']" [routerLinkActive]="['router-link-active']"><span><i class="fa fa-fw fa-user"></i>&nbsp;{{ 'Mes Paris' | translate }}</span></a>
+                    </li>
+
+                </ul>
+            </li>
+        </div>
+
+        <!--<a [routerLink]="['/pari']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-money"></i>&nbsp;{{ 'JCS Easy Bets' | translate }}
-        </a>
-        <a [routerLink]="['/article']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-            <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'Articles' | translate }}
         </a>
         <a [routerLink]="['/pari-classement']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-list-ol"></i>&nbsp;{{ 'Classement' | translate }}
         </a>
         <a *ngIf="connexion" [routerLink]="['/mesparis']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-user"></i>&nbsp;{{ 'Mes paris' | translate }}
+        </a>-->
+        <a [routerLink]="['/article']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-edit"></i>&nbsp;{{ 'Articles' | translate }}
         </a>
         <!--<a [routerLink]="['/tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-table"></i>&nbsp;{{ 'Tables' | translate }}

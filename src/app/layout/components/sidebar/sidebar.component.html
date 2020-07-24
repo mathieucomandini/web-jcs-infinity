@@ -40,10 +40,10 @@
                     <li>
                         <a [routerLink]="['/pari']" [routerLinkActive]="['router-link-active']"><span><i class="fa fa-fw fa-money"></i>&nbsp;{{ 'Parier' | translate }}</span></a>
                     </li>
-                    <li>
+                    <li *ngIf="connexion">
                         <a [routerLink]="['/pari-classement']" [routerLinkActive]="['router-link-active']"><span><i class="fa fa-fw fa-list-ol"></i>&nbsp;{{ 'Classement' | translate }}</span></a>
                     </li>
-                    <li>
+                    <li *ngIf="connexion">
                         <a [routerLink]="['/mesparis']" [routerLinkActive]="['router-link-active']"><span><i class="fa fa-fw fa-user"></i>&nbsp;{{ 'Mes Paris' | translate }}</span></a>
                     </li>
 

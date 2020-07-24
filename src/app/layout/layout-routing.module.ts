@@ -12,6 +12,10 @@ import { PariClassementModule } from './pari-classement/pari-classement.module';
 import { ArticleModule } from './article/article.module';
 import { GestionArticleModule } from './gestion-article/gestion-article.module';
 import { StatsModule } from './stats/stats.module';
+import { ProfilFantasyModule } from './fantasy/profil/profil.module';
+import { RosterModule } from './fantasy/roster/roster.module';
+import { ClassementModule } from './fantasy/classement/classement.module';
+import { CartesModule } from './fantasy/cartes/cartes.module';
 
 const routes: Routes = [
     {
@@ -38,7 +42,11 @@ const routes: Routes = [
             { path: 'pari-classement', loadChildren: () => PariClassementModule},
             { path: 'article', loadChildren: () => ArticleModule},
             { path: 'article/:id', loadChildren: () => ArticleModule},
-            { path: 'gestion-article', loadChildren: () => GestionArticleModule, canActivate: [RedacGuard]}
+            { path: 'gestion-article', loadChildren: () => GestionArticleModule, canActivate: [RedacGuard]},
+            { path: 'profil-fantasy', loadChildren: () => ProfilFantasyModule, canActivate: [UserGuard]},
+            { path: 'roster', loadChildren: () => RosterModule, canActivate: [UserGuard]},
+            { path: 'classement', loadChildren: () => ClassementModule, canActivate: [UserGuard]},
+            { path: 'cartes', loadChildren: () => CartesModule, canActivate: [UserGuard]}
         ]
     }
 ];

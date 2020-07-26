@@ -30,8 +30,14 @@ export class AdminComponent implements OnInit {
     choixOption = '';
 
     choixEquipe = '';
+    choixRole = '';
+    choixLigue = '';
     pseudoJoueur = '';
-    saison = '8';
+    saison = '9';
+
+    choixNature = '';
+    nomItem = '';
+    effetItem = '';
 
     selectionPari = false;
 
@@ -111,21 +117,62 @@ export class AdminComponent implements OnInit {
         //console.log(this.choixEquipe);
         //console.log(this.saison);
 
+        let tempoJoueur = this.pseudoJoueur;
+   
         if(this.pseudoJoueur != '' && this.choixEquipe != ''){
         this.dataService.ajoutJoueur(this.pseudoJoueur,this.choixEquipe,this.saison).then(data => {
             //let's go
             if(data.sucess == 'oui'){
                 this.pseudoJoueur = '';
-                this.choixEquipe = '';
+                this.choixEquipe = '';  
             }
             else
             {
-                alert('Erreur ajout en base');
+                alert('Erreur ajout en base joueur');
             }
         });
         }
         else{
             alert('Pas de paramètre');
         }
+
+        //Ajout des cartes pour un joueur 
+        for(let i = 1; i < 5; i++)
+        {
+            this.dataService.addCard(this.saison, this.choixLigue, tempoJoueur, i, '',this.choixRole, 1, 0).then(data =>
+            {
+                if(!(data.success))
+                {
+                    i = 5;
+                    alert('Erreur ajout en base cartes');
+                }
+
+            });
+        }
+
+    }
+
+    ajoutCarteItem()
+    {
+    
+        for(let i = 1; i < 5; i++)
+        {
+            this.dataService.addCard(this.saison, 'all', this.nomItem, i, this.effetItem, null,this.choixNature, 0).then(data =>
+            {     
+                if(!(data.success))
+                {
+                    i = 5;
+                    alert('Erreur ajout en base item');
+                    console.log(data);
+                }
+            });
+        }
+
+        this.nomItem = '';
+        this.effetItem = '';
+        
+        alert("Ajout de l'item");
+
+        console.log('fin');
     }
 }

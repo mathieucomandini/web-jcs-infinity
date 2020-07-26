@@ -6,31 +6,46 @@
         <br>
         <br>
 
-        <h6>Ajouter un joueur :</h6>
+        <h6>Ajouter un joueur (+ génération de carte JCS Fantasy) :</h6>
         <br>
         <div class="row">           
-                <div class="col-lg-4">
+                <div class="col-lg-2">
                     <label>Pseudo :</label>
                     <input id="nom" [(ngModel)]="pseudoJoueur"  class="form-control" type="text"/>   
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-2">
                     <label>Structure :</label>
                     <select [(ngModel)]="choixEquipe" class="form-control">
-                            <option value="55">Chrissy/Adelring</option>
-                            <option value="56">DivisionZero/Drakostos</option>
-                            <option value="57">Etchebest/Salomeos</option>
-                            <option value="58">Merko/VendsTongs</option>   
-                            <option value="59">MPBHostage/25gDeSaisonRegu</option>
-                            <option value="60">EsterExposito/Mystic</option>
-                            <option value="61">FFFAznG/StarBarbares</option>
-                            <option value="62">Team Fley/PajamaGuardians</option>
-                            <option value="63">La Mafia</option>
-                            <option value="64">Celica</option> 
-                            <option value="800">Bac à sub L1</option>   
-                            <option value="801">Bac à sub Acad</option>             
+                            <option value="65">Memeurs/Sossoke</option>
+                            <option value="66">Outlanders/Kaboom</option>
+                            <option value="67">InZeBoit/SynergyisntReal</option>
+                            <option value="68">Kado/InTopTheWomd</option>   
+                            <option value="69">Les Kinders/Vestiaires</option>
+                            <option value="70">Trotski Net/Pension</option>
+                            <option value="71">Spaceshroom/GankTop</option>
+                            <option value="72">Quinte d'Or/Phailsetco</option>
+                            <option value="900">Bac à sub L1</option>   
+                            <option value="901">Bac à sub Acad</option>             
                     </select>
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-2">
+                    <label>Ligue :</label>
+                    <select [(ngModel)]="choixLigue" class="form-control">
+                            <option value="JCS">JCS</option>
+                            <option value="Acad">Acad</option>
+                    </select>
+                </div>
+                <div class="col-lg-2">
+                    <label>Main rôle :</label>
+                    <select [(ngModel)]="choixRole" class="form-control">
+                            <option value="TOP">TOP</option>
+                            <option value="JUNG">JUNGLE</option>
+                            <option value="MID">MID</option>
+                            <option value="ADC">ADC</option>
+                            <option value="SUPP">SUPP</option>
+                    </select>
+                </div>
+                <div class="col-lg-2">
                     <label>Ajouter :</label>
                     <button type="button" (click)="ajoutJoueur()" class="form-control btn btn-primary">Ajouter le Joueur</button>
                 </div>
@@ -41,6 +56,36 @@
                     </select>
                 </div>-->      
         </div>
+        <br>
+        <p>---------------------------------------------------------------------</p>
+        <br>
+
+        <h6>Ajouter un item (génération de carte JCS Fantasy) :</h6>
+        <br>
+        <div class="row">           
+            <div class="col-lg-2">
+                <label>Nom de carte :</label>
+                <input id="nom" [(ngModel)]="nomItem"  class="form-control" type="text"/>   
+            </div>
+            <div class="col-lg-2">
+                <label>Effet :</label>
+                <input id="nom" [(ngModel)]="effetItem"  class="form-control" type="text"/>   
+            </div>
+            <div class="col-lg-2">
+                <label>Item/Event :</label>
+                <select [(ngModel)]="choixNature" class="form-control">
+                        <option value="3">Item</option>
+                        <option value="4">Event</option>
+                </select>
+            </div>
+            <div class="col-lg-2">
+                <label>Ajouter :</label>
+                <button type="button" (click)="ajoutCarteItem()" class="form-control btn btn-primary">Ajouter l'Item</button>
+            </div>
+        </div>
+  
+        <br>
+        <p>---------------------------------------------------------------------</p>
         <br>
 
         <div class="row">

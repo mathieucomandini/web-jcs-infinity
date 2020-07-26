@@ -315,8 +315,8 @@ export class DataService {
         }).catch (this.handleError).toPromise();
     }
 
-    addCard(saison, ligue, nom_carte, rarete_carte, effet_carte, nature_carte, prix){
-        const json = {"saison": saison,"ligue" : ligue,"nom_carte" : nom_carte,"rarete_carte" : rarete_carte,"effet_carte" : effet_carte,"nature_carte" : nature_carte,"prix" : prix};
+    addCard(saison, ligue, nom_carte, rarete_carte, effet_carte, poste, nature_carte, prix){
+        const json = {"saison": saison,"ligue" : ligue,"nom_carte" : nom_carte,"rarete_carte" : rarete_carte,"effet_carte" : effet_carte,"poste" : poste,"nature_carte" : nature_carte,"prix" : prix};
         return this.authHttp.post(this._apiURL + 'fantasy/addcard', json)
         .map(res => res.json())
         .map(data => {

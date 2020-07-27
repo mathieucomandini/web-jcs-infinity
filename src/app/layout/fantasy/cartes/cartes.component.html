@@ -1,3 +1,66 @@
-<p>
-  cartes works!
-</p>
+<div [@routerTransition]>
+
+  <br>
+  <h3>Voir les cartes</h3>
+  <br>
+  <br>
+
+ 
+  <div class="row">
+    <div class="col-lg-2">
+    <h5>Choisir la ligue :</h5>
+    <select [(ngModel)]="ligue" (ngModelChange)="selectionChange($event)" class="form-control">
+            <option value="JCS">Ligue 1</option>
+            <option value="Acad">Académie</option>
+    </select>
+    </div>
+    <div class="col-lg-2">
+    <h5>Choisir la liste :</h5> 
+    <select [(ngModel)]="listeType" (ngModelChange)="selectionListe($event)" class="form-control">
+      <option value="1">Toutes les cartes</option>
+      <option value="2">Mes cartes</option>
+    </select>
+    </div>
+  </div>
+  
+
+  <br>
+  <br>
+
+  <div class="row" *ngIf="visionListe">
+    <div *ngFor="let item of cartesList; let i = index" class="col col-sm-2">
+      <div class="card mb-3">
+          <div class="card-header">        
+              <p class="text-left"><b>{{item.nom_carte}} - {{item.poste}} - {{listeRarete[item.rarete_carte]}}</b></p>
+          </div>
+          <div class="card-body">
+              <img [src]="urlServer+item.image" width="100%" height="100%">
+          </div>
+          <div class="card-footer">
+              <button class="btn btn-info btn-sm" (click)="gotoDetails(item)" >Voir Détail</button>
+              &nbsp;&nbsp;
+              <button class="btn btn-info btn-sm" *ngIf="isASeller" (click)="gotoUpdate(item)" >Update</button>
+          </div>        
+      </div>     
+    </div>
+
+  </div>
+
+
+  <div class="row" *ngIf="!visionListe">
+          <div class="col-lg-6">
+              <h4><b>{{selectedItem.nom_carte}} - {{selectedItem.poste}} - {{listeRarete[selectedItem.rarete_carte]}}</b></h4>
+            
+              <button class="btn btn-primary" (click)="addToBasket()" >Ajouter au roster</button>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <button class="btn btn-danger" (click)="goBack()" >Retour</button>                     
+          </div>
+          <div class="col-lg-6">
+              <img [src]="urlServer+selectedItem.image" width="100%" height="100%">
+          </div>
+  
+          
+  </div>
+ 
+
+</div>

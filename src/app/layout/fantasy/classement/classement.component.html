@@ -1,3 +1,18 @@
-<p>
-  classement works!
-</p>
+<div [@routerTransition]>
+
+  <br>
+  <h3>Classement</h3>
+  <br>
+  <br>
+
+  <h5>Choisir la ligue :</h5>
+  <div class="row">
+  <div class="col-lg-2">
+  <select [(ngModel)]="ligue" (ngModelChange)="selectionChange($event)" class="form-control">
+          <option value="JCS">Ligue 1</option>
+          <option value="Acad">Académie</option>
+  </select>
+  </div>
+
+
+</div>

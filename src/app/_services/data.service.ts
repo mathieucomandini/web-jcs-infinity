@@ -315,6 +315,43 @@ export class DataService {
         }).catch (this.handleError).toPromise();
     }
 
+    allCardsPlayer(saison, ligue){
+        const json = {"saison": saison,"ligue" : ligue};
+        return this.authHttp.post(this._apiURL + 'fantasy/allcardsplayer', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    allCardsItems(saison, ligue){
+        const json = {"saison": saison,"ligue" : ligue};
+        return this.authHttp.post(this._apiURL + 'fantasy/allcardsitems', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    allCardsTeams(saison, ligue){
+        const json = {"saison": saison,"ligue" : ligue};
+        return this.authHttp.post(this._apiURL + 'fantasy/allcardsteams', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+
+    allCardsEvents(saison, ligue){
+        const json = {"saison": saison,"ligue" : ligue};
+        return this.authHttp.post(this._apiURL + 'fantasy/allcardsevent', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
     addCard(saison, ligue, nom_carte, rarete_carte, effet_carte, poste, nature_carte, prix){
         const json = {"saison": saison,"ligue" : ligue,"nom_carte" : nom_carte,"rarete_carte" : rarete_carte,"effet_carte" : effet_carte,"poste" : poste,"nature_carte" : nature_carte,"prix" : prix};
         return this.authHttp.post(this._apiURL + 'fantasy/addcard', json)

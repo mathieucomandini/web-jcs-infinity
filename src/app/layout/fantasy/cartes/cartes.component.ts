@@ -12,9 +12,10 @@ import { Router } from '@angular/router';
 export class CartesComponent implements OnInit {
 
   ligue = "JCS";
-  listeType = 2;
+  listeType = "1";
   visionListe = true;
   selectedItem: any;
+  listeGenre = 1;
   
   cartesList = [];
   urlServer = '../../../../../assets/images/images_joueur/';
@@ -30,7 +31,7 @@ export class CartesComponent implements OnInit {
 
   ngOnInit() {
     
-    this.dataService.allCardsPlayer(9, this.ligue).then(data => {
+    this.dataService.allCardsType(9, this.ligue, this.listeGenre).then(data => {
       this.cartesList = data;
     });
 
@@ -39,26 +40,62 @@ export class CartesComponent implements OnInit {
   selectionChange($event){  
     localStorage.setItem('ligue',this.ligue);
 
-    this.dataService.allCardsPlayer(9, this.ligue).then(data => {
+    this.dataService.allCardsType(9, this.ligue, this.listeGenre).then(data => {
       this.cartesList = data;
     });
 
   }
 
   selectionListe($event){
-    if(this.listeType == 1)
+
+    switch (this.listeType)
     {
-      //toutes mes cartes
-      this.dataService.allCardsPlayer(9, this.ligue).then(data => {
-        this.cartesList = data;
-      });
+      case "1" :
+          console.log(this.listeGenre)
+          this.dataService.allCardsType(9, this.ligue, this.listeGenre).then(data => {
+            this.cartesList = data;
+          });
+          break;
+      case "2" :
+          this.dataService.allCardsBase(9, this.ligue, this.listeGenre).then(data => {
+            this.cartesList = data;
+          });
+          break;
+      case "3" :
+          this.dataService.deckJoueur(localStorage.getItem("id"), this.ligue, 9, this.listeGenre).then(data => {
+            this.cartesList = data;
+          });
+          break;
+      default:
+        console.log("erreur");
     }
-    else
+  }
+
+  selectionGenre($event){
+
+    console.log(this.listeGenre)
+
+    switch (this.listeType)
     {
-      //mes cartes
-      this.dataService.allCardsPlayer(9, this.ligue).then(data => {
-        this.cartesList = data;
-      });
+      case "1" :
+        this.dataService.allCardsType(9, this.ligue, this.listeGenre).then(data => {
+          this.cartesList = data;
+          console.log(data)
+        });
+        break;
+    case "2" :
+        this.dataService.allCardsBase(9, this.ligue, this.listeGenre).then(data => {
+          this.cartesList = data;
+        });
+        break;
+    case "3" :
+        this.dataService.deckJoueur(localStorage.getItem("id"), this.ligue, 9, this.listeGenre).then(data => {
+          this.cartesList = data;
+        });
+        break;
+    default:
+      console.log("erreur");
+
     }
   }
 

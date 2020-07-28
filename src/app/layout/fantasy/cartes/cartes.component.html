@@ -18,9 +18,19 @@
     <h5>Choisir la liste :</h5> 
     <select [(ngModel)]="listeType" (ngModelChange)="selectionListe($event)" class="form-control">
       <option value="1">Toutes les cartes</option>
-      <option value="2">Mes cartes</option>
+      <option value="2">Mes cartes - Base</option>
+      <option value="3">Mes cartes - Paquet</option>
     </select>
     </div>
+    <div class="col-lg-2">
+      <h5>Choisir le type de carte :</h5> 
+      <select [(ngModel)]="listeGenre" (ngModelChange)="selectionGenre($event)" class="form-control">
+        <option value="1">Joueurs</option>
+        <option value="2">Teams</option>
+        <option value="3">Items</option>
+        <option value="4">Events</option>
+      </select>
+      </div>
   </div>
   
 

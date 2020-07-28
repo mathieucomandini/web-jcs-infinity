@@ -315,37 +315,18 @@ export class DataService {
         }).catch (this.handleError).toPromise();
     }
 
-    allCardsPlayer(saison, ligue){
-        const json = {"saison": saison,"ligue" : ligue};
-        return this.authHttp.post(this._apiURL + 'fantasy/allcardsplayer', json)
+    allCardsType(saison, ligue, type){
+        const json = {"saison": saison,"ligue" : ligue, "type" : type};
+        return this.authHttp.post(this._apiURL + 'fantasy/allcardstype', json)
         .map(res => res.json())
         .map(data => {
             return data;
         }).catch (this.handleError).toPromise();
     }
 
-    allCardsItems(saison, ligue){
-        const json = {"saison": saison,"ligue" : ligue};
-        return this.authHttp.post(this._apiURL + 'fantasy/allcardsitems', json)
-        .map(res => res.json())
-        .map(data => {
-            return data;
-        }).catch (this.handleError).toPromise();
-    }
-
-    allCardsTeams(saison, ligue){
-        const json = {"saison": saison,"ligue" : ligue};
-        return this.authHttp.post(this._apiURL + 'fantasy/allcardsteams', json)
-        .map(res => res.json())
-        .map(data => {
-            return data;
-        }).catch (this.handleError).toPromise();
-    }
-
-
-    allCardsEvents(saison, ligue){
-        const json = {"saison": saison,"ligue" : ligue};
-        return this.authHttp.post(this._apiURL + 'fantasy/allcardsevent', json)
+    allCardsBase(saison, ligue, type){
+        const json = {"saison": saison,"ligue" : ligue, "type" : type};
+        return this.authHttp.post(this._apiURL + 'fantasy/allcardsbase', json)
         .map(res => res.json())
         .map(data => {
             return data;
@@ -460,8 +441,8 @@ export class DataService {
         }).catch (this.handleError).toPromise();
     }
 
-    deckJoueur(id_compte, ligue, saison){
-        const json = {"id_compte": id_compte,"ligue" : ligue,"saison" : saison};
+    deckJoueur(id_compte, ligue, saison, type){
+        const json = {"id_compte": id_compte,"ligue" : ligue,"saison" : saison, "type" : type};
         return this.authHttp.post(this._apiURL + 'fantasy/deckjoueur', json)
         .map(res => res.json())
         .map(data => {

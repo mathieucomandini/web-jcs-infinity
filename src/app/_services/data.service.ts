@@ -304,7 +304,11 @@ export class DataService {
         }).catch (this.handleError).toPromise();
     }
 
-    //Fonction JCS Fantasy
+    /**
+     * 
+     * JCS Fantasy 
+     * c'e
+     */ 
 
     allCards(saison, ligue){
         const json = {"saison": saison,"ligue" : ligue};
@@ -327,6 +331,33 @@ export class DataService {
     allCardsBase(saison, ligue, type){
         const json = {"saison": saison,"ligue" : ligue, "type" : type};
         return this.authHttp.post(this._apiURL + 'fantasy/allcardsbase', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    allCardsRare(saison, ligue, type){
+        const json = {"saison": saison,"ligue" : ligue, "type" : type};
+        return this.authHttp.post(this._apiURL + 'fantasy/allcardsrare', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    tirageJoueur(saison, ligue, rarete){
+        const json = {"saison": saison,"ligue" : ligue, "rarete" : rarete};
+        return this.authHttp.post(this._apiURL + 'fantasy/tiragejoueur', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    tirageItem(saison, ligue){
+        const json = {"saison": saison,"ligue" : ligue};
+        return this.authHttp.post(this._apiURL + 'fantasy/tirageitem', json)
         .map(res => res.json())
         .map(data => {
             return data;

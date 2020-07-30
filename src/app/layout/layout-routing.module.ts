@@ -16,6 +16,7 @@ import { ProfilFantasyModule } from './fantasy/profil/profil.module';
 import { RosterModule } from './fantasy/roster/roster.module';
 import { ClassementModule } from './fantasy/classement/classement.module';
 import { CartesModule } from './fantasy/cartes/cartes.module';
+import { PaquetModule } from './fantasy/paquet/paquet.module';
 
 const routes: Routes = [
     {
@@ -46,7 +47,8 @@ const routes: Routes = [
             { path: 'profil-fantasy', loadChildren: () => ProfilFantasyModule, canActivate: [UserGuard]},
             { path: 'roster', loadChildren: () => RosterModule, canActivate: [UserGuard]},
             { path: 'classement', loadChildren: () => ClassementModule, canActivate: [UserGuard]},
-            { path: 'cartes', loadChildren: () => CartesModule, canActivate: [UserGuard]}
+            { path: 'cartes', loadChildren: () => CartesModule, canActivate: [UserGuard]},
+            { path: 'paquet', loadChildren: () => PaquetModule, canActivate: [UserGuard]}
         ]
     }
 ];

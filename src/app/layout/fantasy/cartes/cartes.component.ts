@@ -16,8 +16,12 @@ export class CartesComponent implements OnInit {
   visionListe = true;
   selectedItem: any;
   listeGenre = 1;
+  saison = 9;
+
+  premierTirage = false;
   
   cartesList = [];
+  deckList = [];
   urlServer = '../../../../../assets/images/images_joueur/';
 
   listeRarete = {
@@ -31,8 +35,18 @@ export class CartesComponent implements OnInit {
 
   ngOnInit() {
     
-    this.dataService.allCardsType(9, this.ligue, this.listeGenre).then(data => {
+    this.dataService.allCardsType(this.saison, this.ligue, this.listeGenre).then(data => {
       this.cartesList = data;
+    });
+
+    this.dataService.deckJoueur(localStorage.getItem("id"), this.ligue, this.saison, this.listeGenre).then(data => {
+      this.deckList = data;
+
+      if(this.deckList.length == 0)
+      {
+        this.premierTirage = true;
+      }
+
     });
 
   }
@@ -40,7 +54,7 @@ export class CartesComponent implements OnInit {
   selectionChange($event){  
     localStorage.setItem('ligue',this.ligue);
 
-    this.dataService.allCardsType(9, this.ligue, this.listeGenre).then(data => {
+    this.dataService.allCardsType(this.saison, this.ligue, this.listeGenre).then(data => {
       this.cartesList = data;
     });
 
@@ -52,17 +66,17 @@ export class CartesComponent implements OnInit {
     {
       case "1" :
           console.log(this.listeGenre)
-          this.dataService.allCardsType(9, this.ligue, this.listeGenre).then(data => {
+          this.dataService.allCardsType(this.saison, this.ligue, this.listeGenre).then(data => {
             this.cartesList = data;
           });
           break;
       case "2" :
-          this.dataService.allCardsBase(9, this.ligue, this.listeGenre).then(data => {
+          this.dataService.allCardsBase(this.saison, this.ligue, this.listeGenre).then(data => {
             this.cartesList = data;
           });
           break;
       case "3" :
-          this.dataService.deckJoueur(localStorage.getItem("id"), this.ligue, 9, this.listeGenre).then(data => {
+          this.dataService.deckJoueur(localStorage.getItem("id"), this.ligue, this.saison, this.listeGenre).then(data => {
             this.cartesList = data;
           });
           break;
@@ -78,18 +92,18 @@ export class CartesComponent implements OnInit {
     switch (this.listeType)
     {
       case "1" :
-        this.dataService.allCardsType(9, this.ligue, this.listeGenre).then(data => {
+        this.dataService.allCardsType(this.saison, this.ligue, this.listeGenre).then(data => {
           this.cartesList = data;
           console.log(data)
         });
         break;
     case "2" :
-        this.dataService.allCardsBase(9, this.ligue, this.listeGenre).then(data => {
+        this.dataService.allCardsBase(this.saison, this.ligue, this.listeGenre).then(data => {
           this.cartesList = data;
         });
         break;
     case "3" :
-        this.dataService.deckJoueur(localStorage.getItem("id"), this.ligue, 9, this.listeGenre).then(data => {
+        this.dataService.deckJoueur(localStorage.getItem("id"), this.ligue, this.saison, this.listeGenre).then(data => {
           this.cartesList = data;
         });
         break;
@@ -108,6 +122,19 @@ export class CartesComponent implements OnInit {
   goBack()
   {
     this.visionListe = true;
+  }
+
+  premiereCartes()
+  {
+    var listeJoueurs = [];
+
+    this.dataService.allCardsRare(this.saison, this.ligue, 1).then(data => {
+      listeJoueurs = data;
+
+    });
+
+    location.replace("/paquet");
+
   }
 
 }

@@ -128,7 +128,7 @@ export class MespariComponent implements OnInit {
         });
     }
 
-    renflouement(){
+    /*renflouement(){
         if(confirm("Vous allez récupérer 200 JC$ mais cela sera déduit de votre score total, continuer ?")){
             this.dataService.renflouerUser(localStorage.getItem('id')).then(data => {
                 if(data.success){
@@ -142,7 +142,7 @@ export class MespariComponent implements OnInit {
                 }  
             });
         }
-    }
+    }*/
 
   
 }

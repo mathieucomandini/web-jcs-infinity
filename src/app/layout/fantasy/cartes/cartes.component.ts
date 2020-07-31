@@ -54,9 +54,27 @@ export class CartesComponent implements OnInit {
   selectionChange($event){  
     localStorage.setItem('ligue',this.ligue);
 
-    this.dataService.allCardsType(this.saison, this.ligue, this.listeGenre).then(data => {
-      this.cartesList = data;
-    });
+    switch (this.listeType)
+    {
+      case "1" :
+        this.dataService.allCardsType(this.saison, this.ligue, this.listeGenre).then(data => {
+          this.cartesList = data;  
+        });
+        break;
+    case "2" :
+        this.dataService.allCardsBase(this.saison, this.ligue, this.listeGenre).then(data => {
+          this.cartesList = data;
+        });
+        break;
+    case "3" :
+        this.dataService.deckJoueur(localStorage.getItem("id"), this.ligue, this.saison, this.listeGenre).then(data => {
+          this.cartesList = data;
+        });
+        break;
+    default:
+      console.log("erreur");
+
+    }
 
   }
 
@@ -87,14 +105,11 @@ export class CartesComponent implements OnInit {
 
   selectionGenre($event){
 
-    console.log(this.listeGenre)
-
     switch (this.listeType)
     {
       case "1" :
         this.dataService.allCardsType(this.saison, this.ligue, this.listeGenre).then(data => {
-          this.cartesList = data;
-          console.log(data)
+          this.cartesList = data;  
         });
         break;
     case "2" :

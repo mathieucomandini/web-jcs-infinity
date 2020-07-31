@@ -20,7 +20,16 @@
   <label>Crédit disponible : {{credit}} JC$</label>
   <br>
   <br>
-  <button type="button" (click)="getPaquet()" class="btn btn-primary">Obtenir un paquet (50 JC$)</button>
+  <div class="row">
+  <div class="col-lg-2">
+  <button *ngIf="peutTirer" type="button" (click)="getPaquet()" class="btn btn-primary">Obtenir un paquet (50 JC$)</button>
+  </div>
+  <div *ngIf="loadData" class="col-lg-2">
+    <img src="./../../../../assets/images/ajax-loader.gif">
+  </div>
+  </div>
+
+
   <br>
   <br>
 

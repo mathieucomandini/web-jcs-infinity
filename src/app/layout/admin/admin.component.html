@@ -79,11 +79,27 @@
                 </select>
             </div>
             <div class="col-lg-2">
+                <label>Rarete :</label>
+                <select [(ngModel)]="choixRarete" class="form-control">
+                        <option value="1">Normal</option>
+                        <option value="2">Rare</option>
+                        <option value="3">Épique</option>
+                        <option value="4">Légendaire</option>
+                </select>
+            </div>
+            <div class="col-lg-2">
                 <label>Ajouter :</label>
                 <button type="button" (click)="ajoutCarteItem()" class="form-control btn btn-primary">Ajouter l'Item</button>
             </div>
         </div>
   
+        <br>
+        <p>---------------------------------------------------------------------</p>
+        <br>
+
+        <h6>Créer session JCS Fantasy :</h6>
+        <br>
+
         <br>
         <p>---------------------------------------------------------------------</p>
         <br>

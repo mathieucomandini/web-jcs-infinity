@@ -32,6 +32,7 @@ export class AdminComponent implements OnInit {
     choixEquipe = '';
     choixRole = '';
     choixLigue = '';
+    choixRarete = '';
     pseudoJoueur = '';
     saison = '9';
 
@@ -154,19 +155,16 @@ export class AdminComponent implements OnInit {
 
     ajoutCarteItem()
     {
-    
-        for(let i = 1; i < 5; i++)
-        {
-            this.dataService.addCard(this.saison, 'all', this.nomItem, i, this.effetItem, null,this.choixNature, 0).then(data =>
-            {     
-                if(!(data.success))
-                {
-                    i = 5;
-                    alert('Erreur ajout en base item');
-                    console.log(data);
-                }
-            });
-        }
+      
+        this.dataService.addCard(this.saison, 'all', this.nomItem, this.choixRarete, this.effetItem, null,this.choixNature, 0).then(data =>
+        {     
+            if(!(data.success))
+            {    
+                alert('Erreur ajout en base item');
+                console.log(data);
+            }
+        });
+        
 
         this.nomItem = '';
         this.effetItem = '';

@@ -307,7 +307,7 @@ export class DataService {
     /**
      * 
      * JCS Fantasy 
-     * c'e
+     * 
      */ 
 
     allCards(saison, ligue){
@@ -472,6 +472,15 @@ export class DataService {
         }).catch (this.handleError).toPromise();
     }
 
+    deckCarteUnique(id_compte, id_carte, ligue, saison){
+        const json = {"id_compte": id_compte,"id_carte" : id_carte,"ligue" : ligue,"saison" : saison};
+        return this.authHttp.post(this._apiURL + 'fantasy/deckcarteunique', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
     deckJoueur(id_compte, ligue, saison, type){
         const json = {"id_compte": id_compte,"ligue" : ligue,"saison" : saison, "type" : type};
         return this.authHttp.post(this._apiURL + 'fantasy/deckjoueur', json)
@@ -481,7 +490,25 @@ export class DataService {
         }).catch (this.handleError).toPromise();
     }
 
-    
+    minusMoney(argent, id){
+        const json = {"argent": argent,"id" : id};
+        return this.authHttp.post(this._apiURL + 'fantasy/minusmoney', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    plusMoney(argent, id){
+        const json = {"argent": argent,"id" : id};
+        return this.authHttp.post(this._apiURL + 'fantasy/plusmoney', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+
 
 
     handleError(error) {

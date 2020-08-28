@@ -100,11 +100,57 @@
         <h6>Créer session JCS Fantasy :</h6>
         <br>
 
+        <div class="row">
+            <div class="col-lg-4">             
+                                <form class="form-inline mb-3">
+                                    <div class="form-group">
+                                        <div class="input-group datepicker-input">
+                                            <input class="form-control" placeholder="yyyy-mm-dd"
+                                                name="dpb" [(ngModel)]="dateFantasy" ngbDatepicker #d="ngbDatepicker">
+                                            <button class="input-group-addon" (click)="d.toggle()" type="button">
+                                                <!-- <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/> -->
+                                                <span class="fa fa-calendar"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="alert alert-info mb-0">
+                                    <strong>Model: </strong> {{ date | json }}
+                                </div>
+
+                                <br>
+                                <ngb-timepicker [(ngModel)]="heureFantasy"></ngb-timepicker>
+                                <div class="alert alert-info">
+                                    <b>Selected time: </b>{{heure | json}}
+                                </div>     
+                                
+                                <br>
+                                <div>
+                                    <label>Semaine session :</label>
+                                    <input id="semaine" [(ngModel)]="semaineSession"  class="form-control" type="text"/>   
+                                </div>
+                                <br>
+            </div>
+    
+        </div>
+        <div class="row">
+            <div class="col-lg-2">
+                <label>Ligue :</label>
+                <select [(ngModel)]="choixLigueSession" class="form-control">
+                        <option value="JCS">JCS</option>
+                        <option value="Acad">Acad</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <button type="button" (click)="ajoutSession()" class="btn btn-primary">Ajouter la Session</button>
+
+
         <br>
         <p>---------------------------------------------------------------------</p>
         <br>
 
-        <div class="row">
+        <!--<div class="row">
                 <div class="col-lg-6">
                         <h6>Ajouter un pari :</h6>
                         <br>
@@ -144,8 +190,7 @@
                                         <div class="input-group datepicker-input">
                                             <input class="form-control" placeholder="yyyy-mm-dd"
                                                 name="dp" [(ngModel)]="date" ngbDatepicker #d="ngbDatepicker">
-                                            <button class="input-group-addon" (click)="d.toggle()" type="button">
-                                                <!-- <img src="img/calendar-icon.svg" style="width: 1.2rem; height: 1rem; cursor: pointer;"/> -->
+                                            <button class="input-group-addon" (click)="d.toggle()" type="button">   
                                                 <span class="fa fa-calendar"></span>
                                             </button>
                                         </div>
@@ -227,6 +272,6 @@
                         </div>
                 </div>
 
-        </div>
+        </div>-->
               
 </div>

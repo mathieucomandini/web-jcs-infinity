@@ -16,6 +16,9 @@
             <li class="nested" [class.expand]="showMenu === 'fantasy'">
                 <ul class="submenu">
                     <li>
+                        <a [routerLink]="['/paquet']" [routerLinkActive]="['router-link-active']"><span><i class="fa fa-fw fa-money"></i>&nbsp;{{ 'Paquet' | translate }}</span></a>
+                    </li>
+                    <li>
                         <a [routerLink]="['/roster']" [routerLinkActive]="['router-link-active']"><span><i class="fa fa-fw fa-university"></i>&nbsp;{{ 'Mon Roster' | translate }}</span></a>
                     </li>
                     <li>

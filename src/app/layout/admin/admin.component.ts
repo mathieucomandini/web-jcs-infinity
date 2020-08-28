@@ -25,13 +25,20 @@ export class AdminComponent implements OnInit {
     date: any;
     heure: any;
 
+    dateFantasy: any;
+    heureFantasy: any;
+
     itemPari: any;
     
     choixOption = '';
 
     choixEquipe = '';
     choixRole = '';
+
     choixLigue = '';
+    choixLigueSession = '';
+    semaineSession = '';
+
     choixRarete = '';
     pseudoJoueur = '';
     saison = '9';
@@ -172,5 +179,24 @@ export class AdminComponent implements OnInit {
         alert("Ajout de l'item");
 
         console.log('fin');
+    }
+
+    ajoutSession()
+    {
+        var datetime = this.dateFantasy.year+':'+this.dateFantasy.month+':'+this.dateFantasy.day+' '+this.heureFantasy.hour+':'+this.heureFantasy.minute+':'+this.heureFantasy.second;
+
+        this.dataService.addSession(this.semaineSession, this.saison, this.choixLigueSession, datetime).then(data => {
+            
+            if(!(data.success))
+            {    
+                alert("Erreur ajout en base de la session");
+                console.log(data);
+            }
+            else
+            {
+                alert("Session ajouté");
+            }
+
+        });
     }
 }

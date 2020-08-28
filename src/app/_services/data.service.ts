@@ -409,8 +409,8 @@ export class DataService {
         }).catch (this.handleError).toPromise();
     }
 
-    rosterJoueur(id_session, saison, ligue, id_ligue){
-        const json = {"id_session": id_session,"saison" : saison,"ligue" : ligue,"id_ligue" : id_ligue};
+    rosterJoueur(id_session, saison, ligue, compte){
+        const json = {"id_session": id_session,"saison" : saison,"ligue" : ligue,"id_compte" : compte};
         return this.authHttp.post(this._apiURL + 'fantasy/rosterjoueur', json)
         .map(res => res.json())
         .map(data => {
@@ -436,9 +436,36 @@ export class DataService {
         }).catch (this.handleError).toPromise();
     }
 
-    addSession(semaine, saison, ligue, date_session, date_fin){
-        const json = {"semaine": semaine,"saison" : saison,"ligue" : ligue,"date_session" : date_session,"date_fin" : date_fin};
+    deleteAllCardRoster(id_carte, id_compte, id_session){
+        const json = {"id_carte": id_carte, "id_compte": id_compte, "id_session": id_session};
+        return this.authHttp.post(this._apiURL + 'fantasy/deleteallcardroster', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    updateRosterItem(id_roster, item_1, item_2, item_3){
+        const json = {"id_roster": id_roster, "item_1": item_1, "item_2": item_2, "item_3": item_3};
+        return this.authHttp.post(this._apiURL + 'fantasy/updateroster', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    addSession(semaine, saison, ligue, date_fin){
+        const json = {"semaine": semaine,"saison" : saison,"ligue" : ligue, "date_fin" : date_fin};
         return this.authHttp.post(this._apiURL + 'fantasy/addsession', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    getSession(saison, ligue){
+        const json = {"saison" : saison,"ligue" : ligue};
+        return this.authHttp.post(this._apiURL + 'fantasy/getsession', json)
         .map(res => res.json())
         .map(data => {
             return data;
@@ -457,6 +484,24 @@ export class DataService {
     updateScore(id, score_valeur){
         const json = {"id": id,"score_valeur" : score_valeur};
         return this.authHttp.post(this._apiURL + 'fantasy/updatescore', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    getScore(id_compte, id_session){
+        const json = {"id_compte": id_compte,"id_session" : id_session};
+        return this.authHttp.post(this._apiURL + 'fantasy/getscore', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    getAllScore(id_compte){
+        const json = {"id_compte": id_compte};
+        return this.authHttp.post(this._apiURL + 'fantasy/getallscore', json)
         .map(res => res.json())
         .map(data => {
             return data;

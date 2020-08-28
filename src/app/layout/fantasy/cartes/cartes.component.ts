@@ -19,6 +19,11 @@ export class CartesComponent implements OnInit {
   saison = 9;
 
   premierTirage = false;
+
+  sessionEnCours = false;
+  sessionEnCoursAcad = false;
+  idSession = 0;
+  idSessionAcad = 0;
   
   cartesList = [];
   deckList = [];
@@ -34,7 +39,41 @@ export class CartesComponent implements OnInit {
   constructor(public router: Router, private dataService: DataService) { }
 
   ngOnInit() {
+
+   this.viderCacheRoster(); 
     
+   this.dataService.getSession(this.saison, this.ligue).then(data => {
+      if(data.session_etat == "En cours")
+      {
+        if(this.ligue == "JCS")
+        {
+          this.sessionEnCours = true;
+          this.idSession = data.id_session;
+        }
+        else
+        {
+          this.sessionEnCoursAcad = true;
+          this.idSessionAcad = data.id_session;
+        }
+
+        var ligueT = this.ligue;
+
+        this.dataService.rosterJoueur(this.idSession, this.saison, this.ligue, localStorage.getItem("id")).then(data => {
+          data.forEach(element => {
+            if(ligueT == "JCS")
+            {
+              localStorage.setItem(element.poste, element.poste);
+            }
+            else
+            {
+              localStorage.setItem(element.poste+"A", element.poste);
+            }
+          });
+  
+        });
+      }
+    });
+
     this.dataService.allCardsType(this.saison, this.ligue, this.listeGenre).then(data => {
       this.cartesList = data;
     });
@@ -152,4 +191,83 @@ export class CartesComponent implements OnInit {
 
   }
 
+  addToRoster()
+  {
+    if(this.ligue == "JCS" && this.sessionEnCours)
+    {
+      console.log(this.selectedItem.poste);
+      console.log(localStorage.getItem(this.selectedItem.poste));
+
+      if(localStorage.getItem(this.selectedItem.poste) != "none")
+      {
+        alert("Il y a déjà une carte pour ce poste dans le roster");
+      } 
+      else
+      {
+        //fonction d'ajout d'un joueur dans le roster
+        this.dataService.addRoster(this.saison, this.ligue, localStorage.getItem("id"), this.selectedItem.id_carte, this.idSession, 0, 0, 0, 0).then(data => {
+          
+          if(data.success)
+          {
+            alert("Ajout du joueur dans le roster");
+          }
+          else
+          {
+            alert("Erreur dans l'ajout au roster");
+          }
+
+        });
+
+        localStorage.setItem(this.selectedItem.poste, this.selectedItem.poste);
+      }
+    }
+    else if(this.ligue == "Acad" && this.sessionEnCoursAcad)
+    {
+      if(localStorage.getItem(this.selectedItem.poste+"A") != "none")
+      {
+        alert("Il y a déjà une carte pour ce poste dans le roster");
+      } 
+      else
+      {
+        //fonction d'ajout d'un joueur dans le roster
+        this.dataService.addRoster(this.saison, this.ligue, localStorage.getItem("id"), this.selectedItem.id_carte, this.idSessionAcad, 0, 0, 0, 0).then(data => {
+          
+          if(data.success)
+          {
+            alert("Ajout du joueur dans le roster");
+          }
+          else
+          {
+            alert("Erreur dans l'ajout au roster");
+          }
+
+        });
+
+        localStorage.setItem(this.selectedItem.poste+"A", this.selectedItem.poste+"A");
+      }
+    }
+    else
+    {
+      alert("Pas de session en cours");
+    }
+  }
+
+  viderCacheRoster()
+  {
+    localStorage.setItem("MID", "none");
+    localStorage.setItem("TOP", "none");
+    localStorage.setItem("JUNG", "none");
+    localStorage.setItem("SUPP", "none");
+    localStorage.setItem("ADC", "none");
+    localStorage.setItem("TEAM", "none");
+    localStorage.setItem("EVENT", "none");
+
+    localStorage.setItem("MIDA", "none");
+    localStorage.setItem("TOPA", "none");
+    localStorage.setItem("JUNGA", "none");
+    localStorage.setItem("SUPPA", "none");
+    localStorage.setItem("ADCA", "none");
+    localStorage.setItem("TEAMA", "none");
+    localStorage.setItem("EVENTA", "none");
+  }
 }

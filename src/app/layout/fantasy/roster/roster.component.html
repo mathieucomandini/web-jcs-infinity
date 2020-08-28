@@ -13,6 +13,95 @@
           <option value="Acad">Académie</option>
   </select>
   </div>
+  </div>
 
+  <div *ngIf="!vueDetail">
+
+    <br>
+    <br>
+
+  <div class="row">
+    <div *ngFor="let item of roster; let i = index" class="col col-sm-2">
+      <div class="card mb-3">
+          <div class="card-header">        
+              <p class="text-left"><b>{{item.nom_carte}} - {{item.poste}} - {{listeRarete[item.rarete_carte]}}</b></p>
+          </div>
+          <div class="card-body">
+              <img [src]="urlServer+item.image" width="100%" height="100%">
+          </div>  
+          <div class="card-footer">
+            <button class="btn btn-info btn-sm" (click)="gotoDetails(item)" >Voir Détail</button>
+            &nbsp;&nbsp;
+            <button *ngIf="!rosterValide" class="btn btn-info btn-sm" (click)="supprimerUnJoueur(item)" >Supprimer</button>
+        </div>      
+      </div>     
+   </div>
+  </div>
+
+  <br>
+  <div class="row">
+      <div class="col-lg-12">
+      <div class="col-lx-2">
+          <button *ngIf="!rosterValide" type="button" (click)="validerRoster()" class="btn btn-primary">Valider Roster</button>
+          <button *ngIf="roster.length > 0 && !rosterValide" type="button" (click)="clearRoster()" class="btn btn-secondary">Supprimer le Roster</button>
+      </div>
+      </div>
+  </div>
+  <br>
+
+</div>
+
+<div *ngIf="vueDetail">
+  <br>
+  <br>
+
+  <div class="row">
+  <div class="col-lg-6">
+    <h4><b>{{selectedItem.nom_carte}} - {{selectedItem.poste}} - {{listeRarete[selectedItem.rarete_carte]}}</b></h4>
+    <button class="btn btn-danger" (click)="goBack()" >Retour</button>                     
+  </div>
+  </div>
+  <br>
+
+  <div *ngIf="selectedItem.nature_carte != 4"> 
+  <div class="row">
+    <div class="col-lg-2">
+      <label>Item 1 :</label>
+      <select [(ngModel)]="selectedItem.item_1_id" class="form-control">
+              <option value="0">-- Pas d'item --</option>
+              <option *ngFor="let unit of listeItem; let i = index" value="{{unit.id_carte}}">{{unit.nom_carte}}</option>
+      </select>
+    </div>
+    <div class="col-lg-2">
+      <label>Item 2 :</label>
+      <select [(ngModel)]="selectedItem.item_2_id" class="form-control">
+              <option value="0">-- Pas d'item --</option>
+              <option *ngFor="let unit of listeItem; let i = index" value="{{unit.id_carte}}">{{unit.nom_carte}}</option>
+      </select>
+    </div>
+    <div class="col-lg-2">
+      <label>Item 3 :</label>
+      <select [(ngModel)]="selectedItem.item_3_id" class="form-control">
+              <option value="0">-- Pas d'item --</option>
+              <option *ngFor="let unit of listeItem; let i = index" value="{{unit.id_carte}}">{{unit.nom_carte}}</option>
+      </select>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-lg-2">
+    <button *ngIf="!rosterValide" class="btn btn-primary" (click)="addItem()" >Valider les items</button>
+    </div>
+  </div>
+  </div>
+
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-lg-4">
+      <img [src]="urlServer+selectedItem.image" width="100%" height="100%">
+    </div>
+  </div>
+</div>
 
 </div>

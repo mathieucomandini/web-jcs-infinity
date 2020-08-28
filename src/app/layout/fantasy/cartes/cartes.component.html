@@ -59,20 +59,26 @@
 
   </div>
 
-
-  <div class="row" *ngIf="!visionListe">
+  <div *ngIf="!visionListe">
+  <div class="row">
           <div class="col-lg-6">
               <h4><b>{{selectedItem.nom_carte}} - {{selectedItem.poste}} - {{listeRarete[selectedItem.rarete_carte]}}</b></h4>
-            
-              <button class="btn btn-primary" (click)="addToBasket()" >Ajouter au roster</button>
+              <br>
+              <br>
+              <button *ngIf="listeType != 1 && selectedItem.nature_carte != 3" class="btn btn-primary" (click)="addToRoster()" >Ajouter au roster</button>
               &nbsp;&nbsp;&nbsp;&nbsp;
               <button class="btn btn-danger" (click)="goBack()" >Retour</button>                     
           </div>
-          <div class="col-lg-6">
-              <img [src]="urlServer+selectedItem.image" width="100%" height="100%">
-          </div>
-  
           
+  </div>
+
+  <br>
+  <br>
+  <div class="row">
+    <div class="col-lg-4">
+      <img [src]="urlServer+selectedItem.image" width="100%" height="100%">
+    </div>
+  </div>
   </div>
  
 

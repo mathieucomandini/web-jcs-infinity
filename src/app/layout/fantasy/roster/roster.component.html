@@ -65,21 +65,21 @@
 
   <div *ngIf="selectedItem.nature_carte != 4"> 
   <div class="row">
-    <div class="col-lg-2">
+    <div *ngIf="selectedItem.rarete_carte > 1" class="col-lg-2">
       <label>Item 1 :</label>
       <select [(ngModel)]="selectedItem.item_1_id" class="form-control">
               <option value="0">-- Pas d'item --</option>
               <option *ngFor="let unit of listeItem; let i = index" value="{{unit.id_carte}}">{{unit.nom_carte}}</option>
       </select>
     </div>
-    <div class="col-lg-2">
+    <div *ngIf="selectedItem.rarete_carte > 2" class="col-lg-2">
       <label>Item 2 :</label>
       <select [(ngModel)]="selectedItem.item_2_id" class="form-control">
               <option value="0">-- Pas d'item --</option>
               <option *ngFor="let unit of listeItem; let i = index" value="{{unit.id_carte}}">{{unit.nom_carte}}</option>
       </select>
     </div>
-    <div class="col-lg-2">
+    <div *ngIf="selectedItem.rarete_carte > 3" class="col-lg-2">
       <label>Item 3 :</label>
       <select [(ngModel)]="selectedItem.item_3_id" class="form-control">
               <option value="0">-- Pas d'item --</option>

@@ -17,11 +17,13 @@ export class RosterComponent implements OnInit {
   ligue = "JCS";
 
   rosterValide = false;
+  sessionValide = false;
 
   session = 0;
   vueDetail = false;
   selectedItem: any;
   roster = [];
+  coutMaxRoster = 20;
 
   listeItem = [];
 
@@ -43,10 +45,16 @@ export class RosterComponent implements OnInit {
 
     this.viderCacheRoster();
 
+    this.dataService.getParam("cout_max_roster").then(data => {
+  
+      this.coutMaxRoster = data[0].param_valeur;
+    });
+
     this.dataService.getSession(this.saison, this.ligue).then(data => {
       if(data.session_etat == "En cours")
       {
         this.session = data.id_session;
+        this.sessionValide = true;
       
         this.dataService.rosterJoueur(this.session, this.saison, this.ligue, localStorage.getItem("id")).then(data => {
           current.roster = data;
@@ -76,6 +84,10 @@ export class RosterComponent implements OnInit {
           }
         });
       }
+      else
+      {
+        this.sessionValide = false;
+      }
     });
 
     this.vueDetail = false;
@@ -83,46 +95,62 @@ export class RosterComponent implements OnInit {
 
   validerRoster()
   {
-    if(this.roster.length > 5)
+    if(this.sessionValide)
     {
+      var ajoutPossible = true;
 
-      if(this.roster.length < 7)
+      this.verifierNbrJpT(ajoutPossible);
+
+      this.coutTotal(ajoutPossible);
+
+      if(ajoutPossible)
       {
-        if(this.ligue == "JCS")
+        if(this.roster.length > 5)
         {
-          if(localStorage.getItem("EVENT") == "none")
+
+          if(this.roster.length < 7)
           {
-            this.dataService.addScore(localStorage.getItem("id"), this.session, 0);
-             this.rosterValide = true;
+            if(this.ligue == "JCS")
+            {
+              if(localStorage.getItem("EVENT") == "none")
+              {
+                this.dataService.addScore(localStorage.getItem("id"), this.session, 0);
+                this.rosterValide = true;
+              }
+              else
+              {
+                alert("Le roster n'est pas complet");
+              } 
+            }
+            else
+            {
+              if(localStorage.getItem("EVENTA") == "none")
+              {
+                this.dataService.addScore(localStorage.getItem("id"), this.session, 0);
+                this.rosterValide = true;
+              }
+              else
+              {
+                alert("Le roster n'est pas complet");
+              } 
+            }
           }
           else
-          {
-            alert("Le roster n'est pas complet");
-          } 
-        }
-        else
-        {
-          if(localStorage.getItem("EVENTA") == "none")
           {
             this.dataService.addScore(localStorage.getItem("id"), this.session, 0);
             this.rosterValide = true;
-          }
-          else
-          {
-            alert("Le roster n'est pas complet");
-          } 
+          }  
         }
+        else
+        {
+          alert("Le roster n'est pas complet");
+        } 
       }
-      else
-      {
-        this.dataService.addScore(localStorage.getItem("id"), this.session, 0);
-        this.rosterValide = true;
-      }  
     }
     else
     {
-      alert("Le roster n'est pas complet");
-    } 
+      alert("Pas de session valide en cours");
+    }
   }
 
   clearRoster()
@@ -334,6 +362,69 @@ export class RosterComponent implements OnInit {
     localStorage.setItem("EVENTA", "none");
   }
 
+  verifierNbrJpT(ajoutPossible)
+  {
+    if(ajoutPossible)
+    {
+      this.roster.forEach(element => {
+        const equipe = this.roster.filter((obj) => obj.team == element.team).length;
 
+        if(equipe > 2)
+        {
+          ajoutPossible = false;
+        }
+      });  
+
+      if(!ajoutPossible)
+      {
+        alert("Limite de 2 joueurs par team dans le roster.")
+      }
+    }
+
+    return ajoutPossible;
+  }
+
+  coutTotal(ajoutPossible)
+  {
+    if(ajoutPossible)
+    {
+      var prix = 0;
+      var item;
+
+      this.roster.forEach(element => {
+        
+        prix += element.prix  
+        
+        if(element.item_1_id > 0)
+        {
+          item = this.listeItem.filter(obj => { return obj.id_carte == element.item_1_id});
+          prix += item.prix;
+        }
+        if(element.item_2_id > 0)
+        {
+          item = this.listeItem.filter(obj => { return obj.id_carte == element.item_2_id});
+          prix += item.prix;
+        }
+        if(element.item_3_id > 0)
+        {
+          item = this.listeItem.filter(obj => { return obj.id_carte == element.item_3_id});
+          prix += item.prix;
+        }
+          
+      });  
+
+      if(prix > this.coutMaxRoster)
+      {
+        ajoutPossible = false;
+      }
+
+      if(!ajoutPossible)
+      {
+        alert("Le coût du roster est supérieur à ")
+      }
+    }
+
+    return ajoutPossible;
+  }
 
 }

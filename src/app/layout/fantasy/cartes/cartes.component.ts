@@ -119,10 +119,11 @@ export class CartesComponent implements OnInit {
 
   selectionListe($event){
 
+    this.visionListe = true;  
+
     switch (this.listeType)
     {
       case "1" :
-          console.log(this.listeGenre)
           this.dataService.allCardsType(this.saison, this.ligue, this.listeGenre).then(data => {
             this.cartesList = data;
           });
@@ -143,6 +144,8 @@ export class CartesComponent implements OnInit {
   }
 
   selectionGenre($event){
+
+    this.visionListe = true;  
 
     switch (this.listeType)
     {

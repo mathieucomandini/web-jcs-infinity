@@ -147,7 +147,7 @@ export class AdminComponent implements OnInit {
         //Ajout des cartes pour un joueur 
         for(let i = 1; i < 5; i++)
         {
-            this.dataService.addCard(this.saison, this.choixLigue, tempoJoueur, i, '',this.choixRole, 1, 0, this.choixEquipe).then(data =>
+            this.dataService.addCard(this.saison, this.choixLigue, tempoJoueur, i, '',this.choixRole, 1, i-1, this.choixEquipe).then(data =>
             {
                 if(!(data.success))
                 {
@@ -163,7 +163,9 @@ export class AdminComponent implements OnInit {
     ajoutCarteItem()
     {
       
-        this.dataService.addCard(this.saison, 'all', this.nomItem, this.choixRarete, this.effetItem, null,this.choixNature, 0, 0).then(data =>
+        var prix = parseInt(this.choixRarete) - 1;
+
+        this.dataService.addCard(this.saison, 'all', this.nomItem, this.choixRarete, this.effetItem, null,this.choixNature, prix, 0).then(data =>
         {     
             if(!(data.success))
             {    

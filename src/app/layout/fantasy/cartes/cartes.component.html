@@ -49,10 +49,16 @@
           <div class="card-body">
               <img [src]="urlServer+item.image" width="100%" height="100%">
           </div>
-          <div class="card-footer">
-              <button class="btn btn-info btn-sm" (click)="gotoDetails(item)" >Voir Détail</button>
-              &nbsp;&nbsp;
-              <button class="btn btn-info btn-sm" *ngIf="isASeller" (click)="gotoUpdate(item)" >Update</button>
+          <div class="card-footer">    
+              <div class="row">
+              <div class="col-lg-6">
+              <button class="btn btn-info btn-sm" (click)="gotoDetails(item)" >Voir Détail</button>      
+                
+              </div>    
+              <div class="col-lg-6">
+                <h6> Coût : {{item.prix}}</h6>  
+              </div>    
+              </div>
           </div>        
       </div>     
     </div>
@@ -64,6 +70,7 @@
           <div class="col-lg-6">
               <h4><b>{{selectedItem.nom_carte}} - {{selectedItem.poste}} - {{listeRarete[selectedItem.rarete_carte]}}</b></h4>
               <br>
+              <h5> Coût : {{selectedItem.prix}}</h5>  
               <br>
               <button *ngIf="listeType != 1 && selectedItem.nature_carte != 3" class="btn btn-primary" (click)="addToRoster()" >Ajouter au roster</button>
               &nbsp;&nbsp;&nbsp;&nbsp;

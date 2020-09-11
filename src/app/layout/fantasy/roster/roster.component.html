@@ -15,6 +15,20 @@
   </div>
   </div>
 
+  <br>
+
+  <div class="row">
+    <div class="col-lg-2">
+      <h6>Valeur totale du roster : {{valeurTotalRoster}}</h6>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-2">
+      <h6>Valeur max du roster : {{coutMaxRoster}}</h6>
+    </div>
+  </div>
+
   <div *ngIf="!vueDetail">
 
     <br>
@@ -62,8 +76,10 @@
   </div>
   </div>
   <br>
+  <h6> Coût : {{selectedItem.prix}}</h6>  
+  <br>
 
-  <div *ngIf="selectedItem.nature_carte != 4"> 
+  <div *ngIf="selectedItem.nature_carte == 1"> 
   <div class="row">
     <div *ngIf="selectedItem.rarete_carte > 1" class="col-lg-2">
       <label>Item 1 :</label>

@@ -24,6 +24,8 @@ export class RosterComponent implements OnInit {
   selectedItem: any;
   roster = [];
   coutMaxRoster = 20;
+  valeurTotalRoster = 0;
+  ajoutPossible = true;
 
   listeItem = [];
 
@@ -70,6 +72,10 @@ export class RosterComponent implements OnInit {
             }
           });
 
+          current.dataService.deckJoueur(localStorage.getItem("id"), current.ligue, current.saison, 3).then(data => {
+            current.listeItem = data;
+            current.coutTotal(true);     
+          });
         });
   
         this.dataService.getScore(localStorage.getItem("id"), this.session).then(data => {
@@ -97,55 +103,57 @@ export class RosterComponent implements OnInit {
   {
     if(this.sessionValide)
     {
-      var ajoutPossible = true;
+      this.ajoutPossible = true;
 
-      this.verifierNbrJpT(ajoutPossible);
-
-      this.coutTotal(ajoutPossible);
-
-      if(ajoutPossible)
+      this.verifierNbrJpT(this.ajoutPossible).then(result => 
       {
-        if(this.roster.length > 5)
-        {
-
-          if(this.roster.length < 7)
+        this.coutTotal(this.ajoutPossible).then(result => {
+          if(this.ajoutPossible)
           {
-            if(this.ligue == "JCS")
+            if(this.roster.length > 5)
             {
-              if(localStorage.getItem("EVENT") == "none")
+    
+              if(this.roster.length < 7)
               {
-                this.dataService.addScore(localStorage.getItem("id"), this.session, 0);
-                this.rosterValide = true;
+                if(this.ligue == "JCS")
+                {
+                  if(localStorage.getItem("EVENT") == "none")
+                  {
+                    this.dataService.addScore(localStorage.getItem("id"), this.session, 0);
+                    this.rosterValide = true;
+                  }
+                  else
+                  {
+                    alert("Le roster n'est pas complet");
+                  } 
+                }
+                else
+                {
+                  if(localStorage.getItem("EVENTA") == "none")
+                  {
+                    this.dataService.addScore(localStorage.getItem("id"), this.session, 0);
+                    this.rosterValide = true;
+                  }
+                  else
+                  {
+                    alert("Le roster n'est pas complet");
+                  } 
+                }
               }
               else
               {
-                alert("Le roster n'est pas complet");
-              } 
+                this.dataService.addScore(localStorage.getItem("id"), this.session, 0);
+                this.rosterValide = true;
+              }  
             }
             else
             {
-              if(localStorage.getItem("EVENTA") == "none")
-              {
-                this.dataService.addScore(localStorage.getItem("id"), this.session, 0);
-                this.rosterValide = true;
-              }
-              else
-              {
-                alert("Le roster n'est pas complet");
-              } 
-            }
+              alert("Le roster n'est pas complet");
+            } 
           }
-          else
-          {
-            this.dataService.addScore(localStorage.getItem("id"), this.session, 0);
-            this.rosterValide = true;
-          }  
-        }
-        else
-        {
-          alert("Le roster n'est pas complet");
-        } 
-      }
+        });
+      });
+
     }
     else
     {
@@ -216,29 +224,31 @@ export class RosterComponent implements OnInit {
 
   addItem()
   {
-    var ajoutPossible = true;
+    var ajoutItem = true;
 
-    if(this.selectedItem.item_1_id != 0)
+    var selectedItem = this.selectedItem;
+
+    if(selectedItem.item_1_id != 0)
     {
-      if(this.selectedItem.item_1_id == this.selectedItem.item_2_id || this.selectedItem.item_1_id == this.selectedItem.item_3_id)
+      if(selectedItem.item_1_id == selectedItem.item_2_id || selectedItem.item_1_id == selectedItem.item_3_id)
       {
-        ajoutPossible = false;
+        ajoutItem = false;
       }
     }
 
-    if(this.selectedItem.item_2_id != 0)
+    if(selectedItem.item_2_id != 0)
     {
-      if(this.selectedItem.item_2_id == this.selectedItem.item_1_id || this.selectedItem.item_2_id == this.selectedItem.item_3_id)
+      if(selectedItem.item_2_id == selectedItem.item_1_id || selectedItem.item_2_id == selectedItem.item_3_id)
       {
-        ajoutPossible = false;
+        ajoutItem = false;
       }
     }
 
-    if(this.selectedItem.item_3_id != 0)
+    if(selectedItem.item_3_id != 0)
     {
-      if(this.selectedItem.item_3_id == this.selectedItem.item_1_id || this.selectedItem.item_3_id == this.selectedItem.item_2_id)
+      if(selectedItem.item_3_id == selectedItem.item_1_id || selectedItem.item_3_id == selectedItem.item_2_id)
       {
-        ajoutPossible = false;
+        ajoutItem = false;
       }
     }
 
@@ -250,31 +260,31 @@ export class RosterComponent implements OnInit {
     var nb2p = 0;
     var nb3p = 0;
 
-    if(this.selectedItem.item_1_id != 0)
+    if(selectedItem.item_1_id != 0)
     {
       mi1 = true;
-      nb1p = this.listeItem.reduce(function (n, item) { return n + (item.id_carte == this.selectedItem.item_1_id);}, 0);
+      nb1p = this.listeItem.reduce(function (n, item) { return n + (item.id_carte == selectedItem.item_1_id);}, 0);
     }
 
-    if(this.selectedItem.item_2_id != 0)
+    if(selectedItem.item_2_id != 0)
     {
       mi2 = true;
-      nb2p = this.listeItem.reduce(function (n, item) { return n + (item.id_carte == this.selectedItem.item_2_id);}, 0);
+      nb2p = this.listeItem.reduce(function (n, item) { return n + (item.id_carte == selectedItem.item_2_id);}, 0);
     }
 
-    if(this.selectedItem.item_3_id != 0)
+    if(selectedItem.item_3_id != 0)
     {
       mi3 = true;
-      nb3p = this.listeItem.reduce(function (n, item) { return n + (item.id_carte == this.selectedItem.item_3_id);}, 0);
+      nb3p = this.listeItem.reduce(function (n, item) { return n + (item.id_carte == selectedItem.item_3_id);}, 0);
     }
 
     this.roster.forEach(element => {  
       
-      if(element.id_roster != this.selectedItem.id_roster)
+      if(element.id_roster != selectedItem.id_roster)
       {
         if(mi1)
         {
-          if(element.item_1_id == this.selectedItem.item_1_id || element.item_2_id == this.selectedItem.item_1_id || element.item_3_id == this.selectedItem.item_1_id)
+          if(element.item_1_id == selectedItem.item_1_id || element.item_2_id == selectedItem.item_1_id || element.item_3_id == selectedItem.item_1_id)
           {
             nb1p = nb1p - 1;
           }
@@ -282,7 +292,7 @@ export class RosterComponent implements OnInit {
 
         if(mi2)
         {
-          if(element.item_1_id == this.selectedItem.item_2_id || element.item_2_id == this.selectedItem.item_2_id || element.item_3_id == this.selectedItem.item_2_id)
+          if(element.item_1_id == selectedItem.item_2_id || element.item_2_id == selectedItem.item_2_id || element.item_3_id == selectedItem.item_2_id)
           {
             nb2p = nb2p - 1;
           }
@@ -290,7 +300,7 @@ export class RosterComponent implements OnInit {
 
         if(mi3)
         {
-          if(element.item_1_id == this.selectedItem.item_3_id || element.item_2_id == this.selectedItem.item_3_id || element.item_3_id == this.selectedItem.item_3_id)
+          if(element.item_1_id == selectedItem.item_3_id || element.item_2_id == selectedItem.item_3_id || element.item_3_id == selectedItem.item_3_id)
           {
             nb3p = nb3p - 1;
           }
@@ -303,7 +313,7 @@ export class RosterComponent implements OnInit {
     {
       if(nb1p < 1)
       {
-        ajoutPossible = false;
+        ajoutItem = false;
       }
     }
 
@@ -311,7 +321,7 @@ export class RosterComponent implements OnInit {
     {
       if(nb2p < 1)
       {
-        ajoutPossible = false;
+        ajoutItem = false;
       }
     }
 
@@ -319,15 +329,15 @@ export class RosterComponent implements OnInit {
     {
       if(nb3p < 1)
       {
-        ajoutPossible = false;
+        ajoutItem = false;
       }
     }
 
-    if(ajoutPossible)
+    if(ajoutItem)
     {
-      if(this.selectedItem.item_3_id != 0 || this.selectedItem.item_2_id != 0 || this.selectedItem.item_1_id != 0)
+      if(selectedItem.item_3_id != 0 || selectedItem.item_2_id != 0 || selectedItem.item_1_id != 0)
       {
-        this.dataService.updateRosterItem(this.selectedItem.id_roster, this.selectedItem.item_1_id, this.selectedItem.item_2_id, this.selectedItem.item_3_id).then(data => {    
+        this.dataService.updateRosterItem(selectedItem.id_roster, selectedItem.item_1_id, selectedItem.item_2_id, selectedItem.item_3_id).then(data => {    
           alert("Items mis à jour");
         });
       }
@@ -362,7 +372,7 @@ export class RosterComponent implements OnInit {
     localStorage.setItem("EVENTA", "none");
   }
 
-  verifierNbrJpT(ajoutPossible)
+  async verifierNbrJpT(ajoutPossible)
   {
     if(ajoutPossible)
     {
@@ -381,11 +391,12 @@ export class RosterComponent implements OnInit {
       }
     }
 
-    return ajoutPossible;
+    this.ajoutPossible = ajoutPossible;
   }
 
-  coutTotal(ajoutPossible)
+  async coutTotal(ajoutPossible)
   {
+
     if(ajoutPossible)
     {
       var prix = 0;
@@ -398,20 +409,22 @@ export class RosterComponent implements OnInit {
         if(element.item_1_id > 0)
         {
           item = this.listeItem.filter(obj => { return obj.id_carte == element.item_1_id});
-          prix += item.prix;
+          prix += item[0].prix; 
         }
         if(element.item_2_id > 0)
         {
           item = this.listeItem.filter(obj => { return obj.id_carte == element.item_2_id});
-          prix += item.prix;
+          prix += item[0].prix;
         }
         if(element.item_3_id > 0)
         {
           item = this.listeItem.filter(obj => { return obj.id_carte == element.item_3_id});
-          prix += item.prix;
+          prix += item[0].prix;
         }
           
       });  
+
+      this.valeurTotalRoster = prix;
 
       if(prix > this.coutMaxRoster)
       {
@@ -420,11 +433,11 @@ export class RosterComponent implements OnInit {
 
       if(!ajoutPossible)
       {
-        alert("Le coût du roster est supérieur à ")
+        alert("Le coût du roster est supérieur à "+this.coutMaxRoster+" et ne pourra donc pas être validé")
       }
     }
 
-    return ajoutPossible;
+    this.ajoutPossible = ajoutPossible;
   }
 
 }

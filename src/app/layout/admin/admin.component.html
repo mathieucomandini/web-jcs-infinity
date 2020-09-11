@@ -149,6 +149,33 @@
         <br>
         <p>---------------------------------------------------------------------</p>
         <br>
+        
+        <h6>Résoudre une session :</h6>
+        <br>
+        <div class="row">           
+            <div class="col-lg-2">
+                <label>ID Session :</label>
+                <input id="idsession" [(ngModel)]="idSession"  class="form-control" type="text"/>   
+            </div>
+            <div class="col-lg-2">
+                <label>Semaine session :</label>
+                <input id="semaineSession" [(ngModel)]="semaineFantasy"  class="form-control" type="text"/>   
+            </div>
+            <div class="col-lg-2">
+                <label>Ligue :</label>
+                <select [(ngModel)]="ligueFantasy" class="form-control">
+                        <option value="JCS">JCS</option>
+                        <option value="Acad">Acad</option>
+                </select>
+            </div>    
+            <div class="col-lg-2">
+                <label>Résoudre :</label>
+                <button type="button" *ngIf="peutResoudreSession" (click)="resoudreSession()" class="form-control btn btn-primary">Bug à volonté</button>
+            </div>
+        </div>
+  
+        <br>
+        <p>---------------------------------------------------------------------</p>
 
         <!--<div class="row">
                 <div class="col-lg-6">

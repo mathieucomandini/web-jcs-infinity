@@ -47,7 +47,13 @@ export class AdminComponent implements OnInit {
     nomItem = '';
     effetItem = '';
 
+    idSession = 0;
+    ligueFantasy = "JCS";
+    saisonFantasy = 9;
+    semaineFantasy = 0;
+
     selectionPari = false;
+    peutResoudreSession = true;
 
     constructor(public router: Router, private dataService: DataService) {
 
@@ -199,6 +205,32 @@ export class AdminComponent implements OnInit {
                 alert("Session ajouté");
             }
 
+        });
+    }
+
+    resoudreSession()
+    {
+        var current = this;
+        current.peutResoudreSession = false;
+
+        current.dataService.base(this.idSession, this.ligueFantasy, this.saisonFantasy, this.semaineFantasy).then(data => {
+
+            if(data.fin1 == "fin1")
+            {
+                current.dataService.event(current.idSession).then(data => {
+
+                    if(data.fin2 == "fin2")
+                    {
+                        current.dataService.fin(current.idSession).then(data => {
+                            if(data.fin3 == "fin3")
+                            {
+                                alert("session fin");
+                                current.peutResoudreSession = true;
+                            }
+                        });
+                    }
+                });
+            }
         });
     }
 }

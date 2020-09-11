@@ -553,6 +553,37 @@ export class DataService {
         }).catch (this.handleError).toPromise();
     }
 
+    /*
+    *  RESOLUTION FANTASY
+    */
+
+    base(session, ligue, saison, semaine){
+        const json = {"session": session,"ligue" : ligue, "saison" : saison, "semaine" : semaine};
+        return this.authHttp.post(this._apiURL + 'fantasy/calculscoresession', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    event(session){
+        const json = {"session": session};
+        return this.authHttp.post(this._apiURL + 'fantasy/calculscoreevent', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
+    fin(session){
+        const json = {"session": session};
+        return this.authHttp.post(this._apiURL + 'fantasy/calculscorefin', json)
+        .map(res => res.json())
+        .map(data => {
+            return data;
+        }).catch (this.handleError).toPromise();
+    }
+
 
     /*
     * JCS

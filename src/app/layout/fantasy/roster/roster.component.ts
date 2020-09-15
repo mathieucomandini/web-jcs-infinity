@@ -101,6 +101,9 @@ export class RosterComponent implements OnInit {
 
   validerRoster()
   {
+    if(confirm("Voulez-vous valider le roster ? Plus aucune modification ne sera possible"))
+    {
+
     if(this.sessionValide)
     {
       this.ajoutPossible = true;
@@ -158,6 +161,8 @@ export class RosterComponent implements OnInit {
     else
     {
       alert("Pas de session valide en cours");
+    }
+
     }
   }
 
@@ -377,12 +382,14 @@ export class RosterComponent implements OnInit {
     if(ajoutPossible)
     {
       this.roster.forEach(element => {
+
         const equipe = this.roster.filter((obj) => obj.team == element.team).length;
 
         if(equipe > 2)
         {
           ajoutPossible = false;
         }
+        
       });  
 
       if(!ajoutPossible)

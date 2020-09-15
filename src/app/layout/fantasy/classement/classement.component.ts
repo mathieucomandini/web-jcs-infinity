@@ -13,6 +13,15 @@ export class ClassementComponent implements OnInit {
 
   constructor(public router: Router, private dataService: DataService) { }
 
+  saison = 9;
+  ligue = "JCS";
+  vueRoster = false;
+  semaine = 1;
+
+  listeSession = [];
+  listeTotale = [];
+  listeParSession = [];
+
   ngOnInit() {
   }
 

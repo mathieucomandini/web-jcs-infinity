@@ -82,8 +82,8 @@ export class DataService {
     }
 
     //ajout d'un joueur pour les stats
-    ajoutJoueur(pseudo: string, structure: string, saison: string){
-        const json = { "key": this.codeAdmin, "pseudo" : pseudo, "structure" : structure, "saison" : saison };
+    ajoutJoueur(pseudo: string, pseudolol: string, structure: string, saison: string){
+        const json = { "key": this.codeAdmin, "pseudo" : pseudo, "pseudolol" : pseudolol, "structure" : structure, "saison" : saison };
         return this.authHttp.post(this._apiURL + 'jcs/ajoutjoueur', json)
         .map(res => res.json())
         .map(data => {

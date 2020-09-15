@@ -41,6 +41,7 @@ export class AdminComponent implements OnInit {
 
     choixRarete = '';
     pseudoJoueur = '';
+    pseudoJoueurLOL = '';
     saison = '9';
 
     choixNature = '';
@@ -134,10 +135,11 @@ export class AdminComponent implements OnInit {
         let tempoJoueur = this.pseudoJoueur;
    
         if(this.pseudoJoueur != '' && this.choixEquipe != ''){
-        this.dataService.ajoutJoueur(this.pseudoJoueur,this.choixEquipe,this.saison).then(data => {
+        this.dataService.ajoutJoueur(this.pseudoJoueur,this.pseudoJoueurLOL,this.choixEquipe,this.saison).then(data => {
             //let's go
             if(data.sucess == 'oui'){
                 this.pseudoJoueur = '';
+                this.pseudoJoueurLOL = '';
                 this.choixEquipe = '';  
             }
             else

@@ -72,7 +72,9 @@
               <br>
               <h5> Coût : {{selectedItem.prix}}</h5>  
               <br>
-              <button *ngIf="listeType != 1 && selectedItem.nature_carte != 3" class="btn btn-primary" (click)="addToRoster()" >Ajouter au roster</button>
+              <h5 *ngIf="selectedItem.nature_carte == 3 || selectedItem.nature_carte == 4">{{selectedItem.effet_carte}}</h5>
+              <br>
+              <button *ngIf="listeType != 1 && selectedItem.nature_carte != 3 && !(listeType == 2 && selectedItem.nature_carte == 4)" class="btn btn-primary" (click)="addToRoster()" >Ajouter au roster</button>
               &nbsp;&nbsp;&nbsp;&nbsp;
               <button class="btn btn-danger" (click)="goBack()" >Retour</button>                     
           </div>

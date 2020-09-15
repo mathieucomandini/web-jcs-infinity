@@ -154,7 +154,7 @@ export class PaquetComponent implements OnInit {
       ligue = "all";
     }
 
-    if(carte.nature_carte != 4 && carte.nature_carte != 3)
+    if(carte.nature_carte != 3)
     {
       this.dataService.deckCarteUnique(localStorage.getItem("id"), carte.id_carte, ligue, this.saison).then(data => {
 

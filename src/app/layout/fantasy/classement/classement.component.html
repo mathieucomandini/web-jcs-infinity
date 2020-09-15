@@ -13,6 +13,43 @@
           <option value="Acad">Académie</option>
   </select>
   </div>
+  </div>
+
+  <br>
+  <br>
+
+  <div *ngIf="!vueRoster">
+
+  <h5>Choisir la semaine :</h5>
+  <div class="row">
+  <div class="col-lg-2">
+  <select [(ngModel)]="session" (ngModelChange)="selectionSemaine($event)" class="form-control">
+          <option value="JCS">Ligue 1</option>
+          <option value="Acad">Académie</option>
+  </select>
+  </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-6">
+    <br>
+    <h4>Score de la semaine n°{{semaine}}</h4>
+    <br>
+    <table id="tableausession" class="display"></table>
+    </div>
+    <div class="col-lg-6">
+    <br>
+    <h4>Score total pour la saison</h4>
+    <br>
+    <table id="tableautotal" class="display"></table>
+    </div>
+   </div>
+
+  </div>
+
+  <div *ngIf="vueRoster">
+
+  </div>
 
 
 </div>

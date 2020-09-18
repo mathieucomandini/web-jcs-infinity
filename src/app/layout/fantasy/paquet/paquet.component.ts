@@ -28,7 +28,7 @@ export class PaquetComponent implements OnInit {
   cartesList = [];
   urlServer = '../../../../../assets/images/images_joueur/';
   credit = 0;
-  peutTirer = true;
+  peutTirer = false;
   loadData = false;
 
   listeRarete = {
@@ -51,7 +51,7 @@ export class PaquetComponent implements OnInit {
 
   async getPaquet()
   {
-    if(this.peutTirer && !this.loadData)
+    if(this.credit >= 50 && !this.loadData)
     {
       this.loadData = true;
 
@@ -87,9 +87,8 @@ export class PaquetComponent implements OnInit {
 
       this.dataService.tirageJoueur(this.saison, this.ligue, rarete).then(data => {
         listeTempo = data;
-
+        
         this.cartesList[i] = listeTempo[this.randomIntFromInterval(0, listeTempo.length)];
-
       });
     }
 
@@ -99,13 +98,10 @@ export class PaquetComponent implements OnInit {
     {
       this.dataService.tirageItem(this.saison, 'all').then(data => {
         itemTempo = data;
-
-        this.cartesList[i] = itemTempo[this.randomIntFromInterval(0, itemTempo.length)];
-
+      
+        this.cartesList[i] = itemTempo[this.randomIntFromInterval(0, itemTempo.length)]; 
       });
     }
-
-    console.log(this.cartesList);
   }
 
   getRandomRareteJoueur()
@@ -126,11 +122,6 @@ export class PaquetComponent implements OnInit {
     }
   }
 
-  getItemOrEvent()
-  {
-    
-  }
-
   getMoney()
   {
     this.dataService.getMesStatsParis(localStorage.getItem("id")).then(data => {      
@@ -139,6 +130,10 @@ export class PaquetComponent implements OnInit {
       if(this.credit < 50)
       {
         this.peutTirer = false;
+      }
+      else
+      {
+        this.peutTirer = true;    
       }
 
     });

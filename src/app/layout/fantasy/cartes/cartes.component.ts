@@ -45,27 +45,31 @@ export class CartesComponent implements OnInit {
    this.dataService.getSession(this.saison, this.ligue).then(data => {
       if(data.session_etat == "En cours")
       {
+        var tempoIdSession = 0;
+
         if(this.ligue == "JCS")
         {
           this.sessionEnCours = true;
           this.idSession = data.id_session;
+          tempoIdSession = data.id_session;
         }
         else
         {
           this.sessionEnCoursAcad = true;
           this.idSessionAcad = data.id_session;
+          tempoIdSession = data.id_session;
         }
 
         var ligueT = this.ligue;
 
-        this.dataService.rosterJoueur(this.idSession, this.saison, this.ligue, localStorage.getItem("id")).then(data => {
+        this.dataService.rosterJoueur(tempoIdSession, this.saison, this.ligue, localStorage.getItem("id")).then(data => {
           data.forEach(element => {
             if(ligueT == "JCS")
             {
               localStorage.setItem(element.poste, element.poste);
             }
             else
-            {
+            {   
               localStorage.setItem(element.poste+"A", element.poste);
             }
           });
@@ -93,6 +97,8 @@ export class CartesComponent implements OnInit {
   selectionChange($event){  
     localStorage.setItem('ligue',this.ligue);
 
+    this.visionListe = true;  
+
     switch (this.listeType)
     {
       case "1" :
@@ -114,6 +120,47 @@ export class CartesComponent implements OnInit {
       console.log("erreur");
 
     }
+
+    this.viderCacheRoster(); 
+
+    this.dataService.getSession(this.saison, this.ligue).then(data => {
+      if(data.session_etat == "En cours")
+      {
+
+        var tempoIdSession = 0;
+
+        if(this.ligue == "JCS")
+        {
+          this.sessionEnCours = true;
+          this.idSession = data.id_session;
+          tempoIdSession = data.id_session;
+        }
+        else
+        {
+          this.sessionEnCoursAcad = true;
+          this.idSessionAcad = data.id_session;
+          tempoIdSession = data.id_session;
+        }
+  
+        var ligueT = this.ligue;
+
+        this.dataService.rosterJoueur(tempoIdSession, this.saison, this.ligue, localStorage.getItem("id")).then(data => {
+
+          data.forEach(element => {
+
+            if(ligueT == "JCS")
+            {
+              localStorage.setItem(element.poste, element.poste);
+            }
+            else
+            {
+              localStorage.setItem(element.poste+"A", element.poste);
+            }
+          });
+  
+        });
+      }
+    });
 
   }
 
@@ -198,8 +245,6 @@ export class CartesComponent implements OnInit {
   {
     if(this.ligue == "JCS" && this.sessionEnCours)
     {
-      console.log(this.selectedItem.poste);
-      console.log(localStorage.getItem(this.selectedItem.poste));
 
       if(localStorage.getItem(this.selectedItem.poste) != "none")
       {
@@ -246,7 +291,7 @@ export class CartesComponent implements OnInit {
 
         });
 
-        localStorage.setItem(this.selectedItem.poste+"A", this.selectedItem.poste+"A");
+        localStorage.setItem(this.selectedItem.poste+"A", this.selectedItem.poste);
       }
     }
     else

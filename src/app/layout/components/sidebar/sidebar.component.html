@@ -9,7 +9,7 @@
         <a [routerLink]="['/jcs-easy-stats']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;{{ 'JCS Easy Stats' | translate }}
         </a>
-        <div class="nested-menu">
+        <div *ngIf="connexion" class="nested-menu">
             <a class="list-group-item" (click)="addExpandClass('fantasy')">
                 <span><i class="fa fa-fw fa-fire"></i>&nbsp; {{ 'JCS Fantasy' | translate }}</span>
             </a>
